@@ -124,14 +124,14 @@ vec3 t=vec3(texture2D(map,uv+vec2(ca,0.)).r,texture2D(map,uv).g,texture2D(map,uv
 float open=smoothstep(0.,.55,uOn);float edge=abs(vUv.y-.5)-open*.5;
 float band=1.-smoothstep(-.004,.004,edge);
 float line=smoothstep(.02,0.,abs(edge))*(1.-smoothstep(.5,.95,uOn))*step(.02,uOn);
-float scan=1.-.06*sin(vUv.y*480.+uTime*2.);
+float scan=1.-.025*sin(vUv.y*480.+uTime*2.);
 vec3 lit=t*scan*uBoost*(1.+.15*uHover);
 vec3 c=mix(t*.06,lit,band*smoothstep(.08,1.,uOn))+vec3(1.,.95,.88)*line*1.6;
-c*=1.-.3*smoothstep(.3,.75,length(vUv-.5));
+c*=1.-.12*smoothstep(.4,.8,length(vUv-.5));
 float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
 #include <colorspace_fragment>
 }`;
-  function screenMat(asp, boost = 1.12) {
+  function screenMat(asp, boost = 1.0) {
     const m = new THREE.ShaderMaterial({ uniforms: { map: { value: blank }, uOn: { value: 0 }, uAsp: { value: asp }, uBoost: { value: boost }, uHover: { value: 0 }, uTime, uRep: { value: new THREE.Vector2(1, 1) }, uOff: { value: new THREE.Vector2() }, uFog, uBg: { value: BG } }, vertexShader: VS, fragmentShader: FS });
     m.userData.asp = asp; return m;
   }
@@ -171,7 +171,7 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
     s.M.set(Math.sin(i * .9) * 4.6, Math.sin(i * 1.7) * 1.3, -(i - 1) * 16 - 4);
     s.w = kind === 'sign' ? 5 : kind === 'end' ? 2.5 : kind === 'wall' ? 4.9 : 4.5;
     s.h = kind === 'sign' ? 1.7 : kind === 'end' ? 3.33 : s.w * 9 / 16;
-    const mon = monitor(s.w, s.h, kind === 'sign' ? 2.4 : 1.12); Object.assign(s, mon); scene.add(s.g);
+    const mon = monitor(s.w, s.h, kind === 'sign' ? 1.6 : 1.0); Object.assign(s, mon); scene.add(s.g);
     if (kind === 'wall') {
       s.scr.visible = false;
       const tw = (s.w - .12) / 3, th = (s.h - .12) / 3;
@@ -189,7 +189,7 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
     }
     (el.dataset.sats || '').split(',').filter(Boolean).forEach((src, k) => {
       const sm = monitor(1, 1); sm.body.material = bodyFar; sm.h = 1.35; sm.p = SATP[k % 4]; sm.ph = rnd() * 6; scene.add(sm.g); s.sats.push(sm);
-      loadTex(src).then(t => { if (!t) return; const a = t.image.width / t.image.height, hh = a < 1 ? 1.9 : 1.35; sm.h = hh; sm.scr.scale.set(hh * a, hh, 1); sm.body.scale.set(hh * a + .1, hh + .1, .14); sm.m.uniforms.uAsp.value = sm.m.userData.asp = a; setTex(sm.m, t); });
+      loadTex(src).then(t => { if (!t) return; const a = t.image.width / t.image.height, hh = a < 1 ? 2.1 : 1.5; sm.h = hh; sm.scr.scale.set(hh * a, hh, 1); sm.body.scale.set(hh * a + .1, hh + .1, .14); sm.m.uniforms.uAsp.value = sm.m.userData.asp = a; setTex(sm.m, t); });
     });
     // اسم الفقرة بخط كبير ورا الشاشة
     s.titleM = new THREE.MeshBasicMaterial({ map: textTex(kind === 'sign' ? 'قبل الهوا خلص' : el.dataset.name, 1024, 300, 210, '#fff'), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, fog: false });
@@ -214,7 +214,7 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
   /* ---- المعالجة: bloom + انحراف لوني مع السرعة + حبيبات ---- */
   const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType, samples: 4 }));
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), .46, .75, .62); composer.addPass(bloom);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), .3, .6, .88); composer.addPass(bloom);
   const fin = new ShaderPass({
     uniforms: { tDiffuse: { value: null }, uTime, uVel: { value: 0 }, uGrain: { value: .012 } },
     vertexShader: 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
@@ -242,10 +242,10 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=(h(gl_FragCoord.xy)-.5)*uGrain*(.15+smoo
         const d = narrow ? Math.max(PH / (.44 * VIS), PW / (.82 * VIS * asp)) : PH / (.62 * VIS), vh = VIS * d;
         s.T.set(narrow ? 0 : vh * asp * .17, -(narrow ? .2 : .06) * vh, 0); s.C.set(s.T.x * .6, s.T.y, d); return;
       }
-      const d = Math.max(s.h / ((narrow ? .36 : .5) * VIS), s.w / ((narrow ? .9 : .54) * VIS * asp)), vh = VIS * d;
+      const d = Math.max(s.h / ((narrow ? .42 : .6) * VIS), s.w / ((narrow ? .96 : .6) * VIS * asp)), vh = VIS * d;
       dMax = Math.max(dMax, d);
-      s.T.copy(s.M).add(new THREE.Vector3(narrow ? 0 : vh * asp * .13, -(narrow ? .2 : .1) * vh, 0));
-      s.C.copy(s.T).add(new THREE.Vector3((i % 2 ? 1 : -1) * (narrow ? .5 : 1.5), .35, d));
+      s.T.copy(s.M).add(new THREE.Vector3(narrow ? 0 : vh * asp * .03, -(narrow ? .2 : .17) * vh, 0));
+      s.C.copy(s.T).add(new THREE.Vector3((i % 2 ? 1 : -1) * (narrow ? .3 : .9), .2, d));
       s.g.position.copy(s.M); s.g.lookAt(s.C); s.q = s.g.quaternion.clone();
       const tw = narrow ? s.w * 1.25 : s.w * 1.7;
       s.title.scale.set(tw, tw * 300 / 1024, 1); s.title.position.copy(s.M).add(new THREE.Vector3(0, s.h / 2 + tw * .11, -2.6)); s.title.lookAt(s.C);
@@ -256,13 +256,13 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=(h(gl_FragCoord.xy)-.5)*uGrain*(.15+smoo
     posCurve = new THREE.CatmullRomCurve3(st.map(s => s.C), false, 'centripetal');
     tgtCurve = new THREE.CatmullRomCurve3(st.map(s => s.T), false, 'centripetal');
     partU.uEndPos.value.copy(END.M).add(new THREE.Vector3(narrow ? 0 : -END.w / 2 - .9, narrow ? END.h / 2 + .55 : END.h / 2 - .2, .3));
-    SPAN = Math.round(H * 1.15); track.style.height = SPAN * (N - 1) + H + 'px';
+    SPAN = Math.round(H * 1.4); track.style.height = SPAN * (N - 1) + H + 'px';
   }
   layout();
   addEventListener('resize', layout);
 
   // السكرول: نص المسافة وقفة عند الفقرة، والنص التاني حركة
-  const mapScroll = y => { const v = clamp(y / SPAN, 0, N - 1), i = Math.floor(v); return i + smooth(clamp((v - i - .28) / .5)); };
+  const mapScroll = y => { const v = clamp(y / SPAN, 0, N - 1), i = Math.floor(v); const q = clamp((v - i - .36) / .3); return i + q * q * q * (q * (q * 6 - 15) + 10); };
   const goTo = i => scrollTo({ top: clamp(i, 0, N - 1) * SPAN + (i > 0 ? 2 : 0), behavior: mqCalm.matches ? 'auto' : 'smooth' });
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="#"]'); if (!a) return;
@@ -307,9 +307,9 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=(h(gl_FragCoord.xy)-.5)*uGrain*(.15+smoo
   function frame(now) {
     if (!running) return;
     requestAnimationFrame(frame);
-    const dt = Math.min(64, now - last); last = now; time += dt / 1000; uTime.value = time;
+    const dt = Math.min(250, now - last); last = now; time += dt / 1000; uTime.value = time;
     const calm = mqCalm.matches, target = mapScroll(scrollY);
-    u = calm ? target : u + (target - u) * (1 - Math.exp(-dt / 1000 * 3.6));
+    u = calm ? target : u + (target - u) * (1 - Math.exp(-dt / 1000 * 2.6));
     const vel = clamp(Math.abs(target - u) * 1.6);
     px += (tx - px) * .05; py += (ty - py) * .05;
     hud(u, dt);
@@ -333,7 +333,7 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=(h(gl_FragCoord.xy)-.5)*uGrain*(.15+smoo
       s.g.visible = s.title.visible = s.beam.visible = vis; s.sats.forEach(x => x.g.visible = vis);
       if (!vis) continue;
       const k = smooth(1 - clamp(near / .9)); s.k = k;
-      const on = smooth(clamp((k - .12) / .6));
+      const on = smooth(clamp((k - .03) / .38));
       let hv = 0;
       if (k > .8 && !narrow) { ray.setFromCamera(ndc, camera); if (ray.intersectObject(s.hit).length) { hv = 1; hov = s.kind !== 'screen' || !!$('.sheet', s.el) || s.kind === 'wall'; } }
       s.mats.forEach(m => { m.uniforms.uOn.value = on; m.uniforms.uHover.value += (hv - m.uniforms.uHover.value) * .1; });
