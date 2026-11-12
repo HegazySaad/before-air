@@ -203,12 +203,12 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
   // علامات أرضية الاستوديو
   const floorU = { uCam: partU.uCam };
   {
-    const f = new THREE.Mesh(new THREE.PlaneGeometry(260, N * 16 + 120), new THREE.ShaderMaterial({
+    const f = new THREE.Mesh(new THREE.PlaneGeometry(260, N * 40 + 200), new THREE.ShaderMaterial({
       uniforms: floorU, transparent: true, depthWrite: false,
       vertexShader: 'varying vec3 vW;void main(){vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;gl_Position=projectionMatrix*viewMatrix*w;}',
       fragmentShader: 'uniform vec3 uCam;varying vec3 vW;void main(){vec2 g=abs(fract(vW.xz/3.-.5)-.5)*3.;float c=max(step(g.x,.02)*step(g.y,.24),step(g.y,.02)*step(g.x,.24));float d=distance(vW.xz,uCam.xz);float a=c*.34*(1.-smoothstep(5.,30.,d));if(a<.003)discard;gl_FragColor=vec4(vec3(.85,.78,.66)*a,a);}',
     }));
-    f.rotation.x = -Math.PI / 2; f.position.set(0, -3.6, -(N * 8)); f.renderOrder = 1; scene.add(f);
+    f.rotation.x = -Math.PI / 2; f.position.set(0, -3.6, -(N * 18)); f.renderOrder = 1; scene.add(f);
   }
 
   /* ---- المعالجة: bloom + انحراف لوني مع السرعة + حبيبات ---- */
@@ -236,17 +236,25 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=(h(gl_FragCoord.xy)-.5)*uGrain*(.15+smoo
     camera.aspect = asp; camera.updateProjectionMatrix();
     partU.uPx.value = (narrow ? .05 : .046) * H * dpr / VIS;
     let dMax = 8; const bar = parseFloat(getComputedStyle(root).getPropertyValue('--bar')) || 60;
+    // أول حاجة: بُعد الكاميرا المطلوب لكل شاشة، وبعدين المسافة بين المحطات بتتحسب منه
+    // عشان الشاشة اللي قبلها تفضل دايماً ورا الكاميرا ومتغطيش على اللي بعدها
+    let zPrev = null;
+    st.forEach(s => {
+      if (!s.g) return;
+      const capEl = $('.cap', s.el), padB = parseFloat(getComputedStyle(s.el).paddingBottom) || 0;
+      const topY = bar + 14, botY = Math.max(topY + 120, H - padB - capEl.offsetHeight - 22), areaH = botY - topY;
+      const ff = areaH * .96 / H, wf = narrow ? .96 : .66;
+      s.dd = Math.max(s.h / (ff * VIS), s.w / (wf * VIS * asp)); s.off = .5 - (topY + botY) / 2 / H;
+      s.M.z = zPrev === null ? -Math.max(20, s.dd + 8) : zPrev - Math.max(18, s.dd + 10); zPrev = s.M.z;
+    });
     st.forEach((s, i) => {
       if (s.kind === 'title') { const d = Math.max(8, WA / ((narrow ? .9 : .6) * VIS * asp)); s.C.set(0, 0, d); s.T.set(0, -.07 * VIS * d, 0); return; }
       if (s.kind === 'me') {
         const d = narrow ? Math.max(PH / (.44 * VIS), PW / (.82 * VIS * asp)) : PH / (.62 * VIS), vh = VIS * d;
         s.T.set(narrow ? 0 : vh * asp * .17, -(narrow ? .2 : .06) * vh, 0); s.C.set(s.T.x * .6, s.T.y, d); return;
       }
-      // المساحة الفاضية بين الشريط والكلام: الشاشة بتتمركز فيها ومش بتدخل تحت الكلام أو الشريط
-      const capEl = $('.cap', s.el), padB = parseFloat(getComputedStyle(s.el).paddingBottom) || 0;
-      const topY = bar + 14, botY = Math.max(topY + 120, H - padB - capEl.offsetHeight - 22), areaH = botY - topY;
-      const ff = areaH * .96 / H, wf = narrow ? .96 : .66;
-      const d = Math.max(s.h / (ff * VIS), s.w / (wf * VIS * asp)), vh = VIS * d, off = .5 - (topY + botY) / 2 / H;
+      // الشاشة بتتمركز في المساحة الفاضية بين الشريط والكلام
+      const d = s.dd, vh = VIS * d, off = s.off;
       dMax = Math.max(dMax, d);
       s.T.copy(s.M).add(new THREE.Vector3(narrow ? 0 : vh * asp * .03, -off * vh, 0));
       s.C.copy(s.T).add(new THREE.Vector3((i % 2 ? 1 : -1) * (narrow ? .3 : .9), .2, d));
