@@ -481,6 +481,7 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.
     if (vis !== shown) {
       if (shown >= 0) shots[shown].classList.remove('on'); if (vis >= 0) shots[vis].classList.add('on'); shown = vis;
       root.dataset.mood = vis >= 0 ? st[vis].mood : '';
+      root.dataset.kind = vis >= 0 ? st[vis].kind : '';
       const y = vis >= 0 ? shots[vis].dataset.year : ''; if (y) yearN.textContent = y; yearEl.classList.toggle('show', !!y);
     }
   }
