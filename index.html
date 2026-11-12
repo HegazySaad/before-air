@@ -4,16 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>حجازي سعد · قبل الهوا</title>
-<meta name="description" content="حجازي سعد، معد وكاتب سيناريو تلفزيوني في شبكة أبوظبي للإعلام. 16 سنة من غرف الأخبار للاستوديو، في لقطة واحدة بتمشي فيها بالسكرول.">
+<meta name="description" content="حجازي سعد، معد وكاتب سيناريو تلفزيوني في شبكة أبوظبي للإعلام. 16 سنة من غرف الأخبار للاستوديو، في فيلم قصير بيتفرج عليه بالسكرول.">
 <meta name="theme-color" content="#060505">
 <link rel="preload" href="fonts/aref-ruqaa-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/readex-pro-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="take.css">
 <script>(function(r){try{var c=document.createElement('canvas');if(!(c.getContext('webgl2')))return}catch(e){return}r.classList.add('boot');window.__unboot=function(){r.classList.remove('boot')};setTimeout(window.__unboot,9000);addEventListener('error',window.__unboot,true)})(document.documentElement)</script>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/jsm/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Hegazy Saad", "alternateName": "حجازي سعد", "jobTitle": "TV Content Editor & Scriptwriter", "worksFor": {"@type": "Organization", "name": "Abu Dhabi Media Network"}, "url": "https://hegazysaad.github.io/before-air/", "sameAs": ["https://www.linkedin.com/in/hegazy-saad"], "knowsLanguage": ["ar"]}</script>
 <meta property="og:type" content="website">
-<meta property="og:title" content="حجازي سعد · قبل الهوا">
-<meta property="og:description" content="حجازي سعد، معد وكاتب سيناريو تلفزيوني في شبكة أبوظبي للإعلام. 16 سنة من غرف الأخبار للاستوديو، في لقطة واحدة بتمشي فيها بالسكرول.">
+<meta property="og:title" content="حجازي سعد.. قبل الهوا">
+<meta property="og:description" content="معد وكاتب سيناريو تلفزيوني في شبكة أبوظبي للإعلام.. 16 سنة، وأكتر من 15 مشروع تلفزيوني، وحكايات من الخبر للهوا.">
 <meta property="og:locale" content="ar_AE">
 <meta property="og:url" content="https://hegazysaad.github.io/before-air/">
 <meta property="og:image" content="https://hegazysaad.github.io/before-air/og.jpg">
@@ -21,52 +22,55 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body>
-<a class="skip" href="#onair">روح للشغل على طول</a>
+<body data-eggs="{&quot;coffee&quot;: &quot;القهوة خلصت.. بس الفقرة لسه.&quot;, &quot;lamp&quot;: &quot;ضلمة؟ الكنترول بيحب كده.&quot;, &quot;script&quot;: &quot;أول نسخة.. دايما بتتغير.&quot;, &quot;monitor&quot;: &quot;تحت الهوا في 50 ثانية&quot;, &quot;camera&quot;: &quot;اللي وراها بيسند الحكاية.&quot;, &quot;door&quot;: &quot;باب الكنترول.. على الهوا من هنا.&quot;}">
+<a class="skip" href="#documentary">روح للشغل على طول</a>
 <div id="loader" aria-hidden="true"><i class="dot"></i><b>قبل الهوا</b><span id="loadN" dir="ltr">00</span></div>
 <canvas id="stage" aria-hidden="true"></canvas>
+<div class="bars" aria-hidden="true"></div>
 <header class="bar">
   <a class="name" href="#top">حجازي سعد</a>
-  <p class="state"><i class="dot"></i><span id="stateTxt">قبل الهوا</span><span class="tc" id="tc" dir="ltr">00:10</span></p>
-  <button type="button" id="runBtn" data-run aria-haspopup="dialog">ترتيب الحلقة</button>
+  <p class="state"><i class="dot"></i><span id="stateTxt">قبل الهوا</span><button type="button" class="tc" id="tc" dir="ltr" aria-label="تايم كود">00:00:00:00</button></p>
+  <button type="button" class="hb" data-do="work">الشغل</button>
+  <button type="button" class="hb" data-do="run" aria-haspopup="dialog">ترتيب الحلقة</button>
 </header>
 <main id="main">
-<section class="shot hero" id="top" data-name="البداية" data-kind="title" aria-labelledby="h-top">
+<section class="shot k-room" id="top" data-name="غرفة الكتابة" data-kind="room" aria-labelledby="h-top">
   
   <div class="cap">
-    <h1 id="h-top">«مساء الخير».. الجملة دي حد كتبها.</h1>
-    <p class="hint">انزل بالسكرول.. فاضل 10 ثواني على الهوا</p>
+    <h1 id="h-top">حجازي سعد</h1>
+    <p class="lead">معد وكاتب سيناريو تلفزيوني.. بقالي 16 سنة بين غرف الأخبار والاستوديوهات العربية.</p>
+    <p>كل حاجة بتشوفها على الشاشة.. بدأت في يوم بكلمتين على ورقة.</p>
+    <p class="go"><button type="button" class="btn" data-do="next"><i class="dot"></i>خش نشوف الحكاية</button><button type="button" class="btn ghost" data-do="work"><i class="dot"></i>الشغل على طول</button></p>
   </div>
 </section>
-<section class="shot" id="me" data-name="حجازي سعد" data-kind="me" data-img="img/ice-portrait.webp" aria-labelledby="h-me">
+<section class="shot k-me" id="me" data-name="قبل الهوا" data-kind="me" data-img="img/ice-portrait.webp" aria-labelledby="h-me">
   <figure class="pic"><img src="img/ice-portrait.webp" alt="" width="800" height="1000" loading="lazy"></figure>
   <div class="cap">
-    <h2 id="h-me">أنا حجازي سعد</h2>
-    <p class="lead">معد وكاتب سيناريو تلفزيوني في شبكة أبوظبي للإعلام. معظم شغلي بيحصل قبل ما اللمبة الحمرا تنور.</p>
-    <ul class="facts">
-      <li><b>16 سنة</b><span>من غرف الأخبار للاستوديوهات</span></li>
-      <li><b>+15 مشروع تلفزيوني</b><span>على مدار أكتر من 3 سنين</span></li>
-      <li><b>فصحى.. وإماراتي</b><span>لكل حكاية صوت يناسبها</span></li>
-    </ul>
+    <h2 id="h-me">قبل الهوا..</h2>
+    <p class="lead">أنا حجازي سعد.. معد وكاتب سيناريو تلفزيوني في شبكة أبوظبي للإعلام.</p>
+    <p>بدأت مع الخبر، ووصلت للكاميرا.. ومن ساعتها وأنا عارف إن فيه دايما حكاية مستنية تتقال.</p>
+    <ul class="facts"><li><b>16 سنة</b><span>من غرف الأخبار للاستوديوهات</span></li><li><b>+15 مشروع تلفزيوني</b><span>على مدار أكتر من 3 سنين</span></li><li><b>فصحى.. وإماراتي</b><span>لكل حكاية صوت يناسبها</span></li></ul>
   </div>
 </section>
-<section class="shot" id="newsroom" data-name="غرفة الأخبار" data-kind="screen" data-img="img/ice-newsroom.webp" aria-labelledby="h-newsroom">
-  <figure class="pic"><img src="img/ice-newsroom.webp" alt="" width="1280" height="720" loading="lazy"></figure>
+<section class="shot k-screen" id="newsroom" data-name="غرفة الأخبار" data-kind="screen" data-img="img/lg/control-room.webp" data-tint="#ffd9a8" data-paper="الخبر مستعجل، والكلمة لازم تبقى في مكانها." aria-labelledby="h-newsroom">
+  <figure class="pic"><img src="img/lg/control-room.webp" alt="" width="1400" height="787" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-newsroom">غرفة الأخبار</h2>
     <p class="lead">بدايتي كانت في غرف الأخبار.. الخبر مستعجل، والكلمة لازم تبقى في مكانها.</p>
     <p>وسط العناوين والأسئلة، الحكايات ليها شكل تاني.. قبل ما تتحول لصوت وصورة.</p>
   </div>
+  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>الجملة دي اتغيرت قبل الهوا.</aside>
 </section>
-<section class="shot" id="studio" data-name="الاستوديو" data-kind="screen" data-img="img/ice-studio.webp" data-sats="img/sm/hegazy-floor.webp,img/sm/library-set.webp,img/sm/camera.webp" aria-labelledby="h-studio">
+<section class="shot k-screen" id="studio" data-name="الاستوديو" data-kind="screen" data-img="img/ice-studio.webp" data-tint="#ffd9a8" data-paper="الكلمة هنا ليها صوت وصورة ووقت." data-sats="img/sm/hegazy-floor.webp,img/sm/library-set.webp,img/sm/multiview-night.webp,img/sm/stage.webp" aria-labelledby="h-studio">
   <figure class="pic"><img src="img/ice-studio.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-studio">الاستوديو</h2>
     <p class="lead">وبعدين جيه الاستوديو.. السلك على الأرض، والكشاف فوق، وشاشة مكتوب عليها STBY.</p>
     <p>الكلمة هنا ليها صوت وصورة ووقت.. وورا الكادر غرفة تحكم مليانة شاشات، كلها مستنية اللحظة اللي الكلام فيها يطلع على الهوا.</p>
   </div>
+  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>في الكنترول، الدقيقة مش دايما ستين ثانية!</aside>
 </section>
-<section class="shot" id="voices" data-name="صوتين" data-kind="screen" data-img="img/ice-voices.webp" aria-labelledby="h-voices">
+<section class="shot k-screen" id="voices" data-name="صوتين" data-kind="screen" data-img="img/ice-voices.webp" data-tint="#ffd9a8" data-paper="فصحى للوثائقي.. وإماراتي للشاشة." aria-labelledby="h-voices">
   <figure class="pic"><img src="img/ice-voices.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-voices">صوتين</h2>
@@ -74,77 +78,67 @@
     <p>كل مرة بتتغير اللغة، بس الحكاية بتفضل هي اللي بتحدد إزاي تتقال.</p>
   </div>
 </section>
-<section class="shot air" id="onair" data-name="على الهوا" data-kind="sign" data-img="img/ice-onair.webp" aria-labelledby="h-onair">
-  <figure class="pic"><img src="img/ice-onair.webp" alt="" width="1280" height="720" loading="lazy"></figure>
-  <div class="cap">
-    <h2 id="h-onair">اللمبة نورت</h2>
-    <p class="lead">من هنا الشغل ماشي زي ترتيب الحلقة.. كل برنامج له دوره.</p>
-    <p class="go"><button type="button" class="btn" data-run><i class="dot"></i>ترتيب الحلقة</button></p>
-  </div>
-</section>
-<section class="shot prog" id="documentary" data-name="الفيلم الوثائقي" data-kind="screen" data-img="img/ice-documentary.webp" aria-labelledby="h-documentary">
+<section class="shot k-screen" id="documentary" data-name="الفيلم الوثائقي" data-kind="screen" data-img="img/ice-documentary.webp" data-year="2026" data-mood="letterbox" data-tint="#e8c79a" data-paper="إزاي تحكي تاريخ الحوكمة في الإمارات من غير ما الحكاية تتحول لأرقام وقوانين؟" aria-labelledby="h-documentary">
   <figure class="pic"><img src="img/ice-documentary.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-documentary">50 عاما نصون مكتسبات الوطن</h2>
     <p class="meta">وثائقي · قناة أبوظبي · نوفمبر 2026</p>
     <p class="lead">إزاي تحكي تاريخ الحوكمة في الإمارات من غير ما الحكاية تتحول لأرقام وقوانين؟</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
   </div>
+  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>المشهد ده كان محتاج كلمة واحدة أقل.</aside>
   <div class="sheet">
-    <p>إزاي تحكي تاريخ الحوكمة في الإمارات من غير ما الحكاية تتحول لأرقام وقوانين؟ ده كان التحدي وأنا بكتب سيناريو الفيلم الوثائقي لجهاز الإمارات للمحاسبة. رحلة من رؤية الشيخ زايد وبدايات الاتحاد، لحد بناء منظومة بتحافظ على مكتسبات الوطن.. بتتروى بشهادات معالي الدكتور أنور قرقاش، ومعالي زكي نسيبة، ومعالي د. علي النعيمي، وسعادة محمد العبار، والمهندس نجيب ساويرس. حاولت أخلي الواقع هو اللي يتكلم.</p>
+    <p>إزاي تحكي تاريخ الحوكمة في الإمارات من غير ما تتحول الحكاية لأرقام وقوانين؟ ده كان التحدي وأنا بكتب سيناريو الفيلم الوثائقي لجهاز الإمارات للمحاسبة. رحلة من رؤية الشيخ زايد وبدايات الاتحاد، لحد بناء منظومة بتحافظ على مكتسبات الوطن. حكاية بتتروى من خلال شهادات شخصيات بارزة، زي معالي الدكتور أنور قرقاش، ومعالي زكي نسيبة، ومعالي د. علي النعيمي، وسعادة محمد العبار، والمهندس نجيب ساويرس. حاولت فيها أخلي الواقع هو اللي يتكلم ويحكي للناس.</p>
     <p class="role"><b>دوري</b> من الفكرة للبحث، كتبت السيناريو والتعليق الصوتي.. وجهزت محاور المقابلات.</p>
-    <ul class="lnks"><li><a class="lnk" href="https://www.youtube.com/watch?v=Ecu7OrC1kpE" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>مقطع من الفيلم</b><span>يوتيوب قناة أبوظبي · 4 نوفمبر 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DfaHv5NNmVP/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>مقطع من الفيلم</b><span>إنستغرام قناة أبوظبي</span></span></a></li></ul>
+    <ul class="lnks"><li><a class="lnk" href="https://www.youtube.com/watch?v=Ecu7OrC1kpE" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>50 عاما نصون مكتسبات الوطن</b><span>مقطع على يوتيوب قناة أبوظبي · 4 نوفمبر 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DfaHv5NNmVP/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>50 عاما نصون مكتسبات الوطن</b><span>مقطع على إنستغرام قناة أبوظبي</span></span></a></li></ul>
   </div>
 </section>
-<section class="shot prog" id="mawjat" data-name="موجات" data-kind="screen" data-img="img/ice-mawjat.webp" data-sats="img/sm/yt-J3WdcwepPuc.webp,img/sm/yt-HubOz07HLhc.webp,img/sm/yt-YqILrT7Z-io.webp,img/sm/yt-hFICiTu1Sy4.webp" aria-labelledby="h-mawjat">
+<section class="shot k-control" id="onair" data-name="على الهوا" data-kind="control" data-tint="#ff5a4a" aria-labelledby="h-onair">
+  
+  <div class="cap">
+    <h2 id="h-onair">على الهوا</h2>
+    <p class="lead">هنا الشغل ماشي زي ترتيب الحلقة.. كل برنامج له دوره.</p>
+    <p>دي حيطة الكنترول: اختار شاشة وروح لبرنامجها على طول، أو كمّل نزول والنقطة الحمرا هتمشي معاك.</p>
+    <p class="go"><button type="button" class="btn" data-do="run"><i class="dot"></i>ترتيب الحلقة</button></p>
+  </div>
+</section>
+<section class="shot k-screen" id="mawjat" data-name="موجات" data-kind="screen" data-img="img/ice-mawjat.webp" data-year="2026" data-mood="wave" data-tint="#9fd6ff" data-paper="في الموسم السابع.. الحكايات مع دكاترة وخبراء." data-sats="img/sm/yt-J3WdcwepPuc.webp,img/sm/yt-HubOz07HLhc.webp,img/sm/yt-YqILrT7Z-io.webp,img/sm/yt-hFICiTu1Sy4.webp" aria-labelledby="h-mawjat">
   <figure class="pic"><img src="img/ice-mawjat.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-mawjat">موجات</h2>
     <p class="meta">حوار · الموسم السابع · 2026</p>
     <p class="lead">في الموسم السابع.. الحكايات مع دكاترة وخبراء.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
   </div>
+  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>سؤال زيادة؟ أهو ممكن ينقذ الفقرة.</aside>
   <div class="sheet">
     <p>في الموسم السابع من «موجات» سنة 2026، الحكايات مع دكاترة وخبراء.. أربع حلقات منهم تحت، اختار اللي يشدك.</p>
     <p class="role"><b>دوري</b> حطيت شكل الموسم.. واخترت الضيوف والمواضيع، وحضرت الأسئلة وسكريبت المذيع.</p>
     <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/ar/admn/series/mawjaat/705295400206" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>على منصة ADMN في STARZPLAY</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=J3WdcwepPuc" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-J3WdcwepPuc.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>جيل يطلب التوازن</b><span>مع فاتن العياش</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=HubOz07HLhc" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-HubOz07HLhc.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>مرض ينمو في صمت</b><span>مع البروفيسور حميد الشامسي</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=YqILrT7Z-io" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-YqILrT7Z-io.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>أنا عايش بالخوف</b><span>مع د. هاني عبد الجواد</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=hFICiTu1Sy4" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-hFICiTu1Sy4.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>أنت السبب</b><span>مع د. باسم بدر</span></span></a></li></ul>
   </div>
 </section>
-<section class="shot prog" id="masaa" data-name="مساء أبوظبي" data-kind="screen" data-img="img/ice-masaa.webp" data-sats="img/sm/yt-84LC9u8oJOQ.webp,img/sm/guest.webp" aria-labelledby="h-masaa">
-  <figure class="pic"><img src="img/ice-masaa.webp" alt="" width="1280" height="720" loading="lazy"></figure>
+<section class="shot k-screen" id="autoplus" data-name="أوتو بلس" data-kind="screen" data-img="img/ice-autoplus.webp" data-year="2025" data-mood="speed" data-tint="#58e0d0" data-paper="مفيش طريق قدامنا هنا.. بس فيه كلام كتير عن العربيات." data-sats="img/sm/autoplus-monitor.webp,img/sm/yt-ivxXu3mau-M.webp,img/sm/autoplus-set.webp,img/sm/monitor-closeup.webp" aria-labelledby="h-autoplus">
+  <figure class="pic"><img src="img/ice-autoplus.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
-    <h2 id="h-masaa">مساء أبوظبي</h2>
-    <p class="meta">مباشر · 6 مواسم</p>
-    <p class="lead">ضيف في الاستوديو، ومراسل في الميدان، وترند بيخبط على باب الحلقة من غير ميعاد.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
+    <h2 id="h-autoplus">أوتو بلس</h2>
+    <p class="meta">ثقافة وترفيه · 2025 · 15 حلقة</p>
+    <p class="lead">مفيش طريق قدامنا هنا.. بس فيه كلام كتير عن العربيات.</p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
   </div>
+  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>أصعب سؤال ساعات بيكون أبسط سؤال.</aside>
   <div class="sheet">
-    <p>«مساء أبوظبي».. 6 مواسم على الهوا. ضيف في الاستوديو، ومراسل في الميدان، وترند بيخبط على باب الحلقة من غير ميعاد.</p>
-    <p class="role"><b>دوري</b> جهزت الفقرات والضيوف والترند.. وكتبت أسئلة الضيوف وسكريبت المذيعين.</p>
-    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/masaa-abu-dhabi/705293352151" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>على منصة ADMN في STARZPLAY</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/playlist?list=PLOjgSWqRGq6o" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>مقاطع الموسم السادس</b><span>أكتر من 200 مقطع · يوتيوب قناة أبوظبي</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=Vir64ufkZKw" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>حلقة 6 نوفمبر 2026</b><span>مقطع على يوتيوب</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=84LC9u8oJOQ" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-84LC9u8oJOQ.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>حلقة 30 أكتوبر 2026</b><span>انطلاق مهرجان الشيخ زايد</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/Dd_22hzDF45/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>روكي.. حلم اتحقق</b><span>تقرير نادي السينما · 2 أكتوبر 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DdrUDUrCQQa/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>عدنان الطلياني</b><span>تقرير أيقونات · 24 سبتمبر 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DdWpyy2ksLn/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الأب الروحي.. الفيلم اللي كان ممكن ما يشوفش النور</b><span>تقرير نادي السينما · 16 سبتمبر 2026</span></span></a></li></ul>
+    <p>«أوتو بلس» سنة 2025.. 15 حلقة لعشاق العربيات، قاعدين على كنبة الاستوديو. مفيش طريق قدامنا هنا.. بس فيه كلام كتير عن العربيات.</p>
+    <p class="role"><b>دوري</b> اشتغلت على شكل البرنامج واختيار ضيوفه ومواضيعه.. وكتبت الأسئلة والسكريبت.</p>
+    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/auto/726959656025" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>على منصة ADMN في STARZPLAY</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=ivxXu3mau-M" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-ivxXu3mau-M.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>صحح معلوماتك عن سيارتك</b><span>مقطع على يوتيوب</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DO5lDIGATwJ/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>كواليس برومو أوتو بلس</b><span>ريل على إنستغرام · سبتمبر 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/p/DQrKP_JE_gp/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>فريق أوتو بلس.. بعد النجاح</b><span>صور من الكواليس · نوفمبر 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/p/DSKjNwrExyg/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>كواليس أوتو بلس</b><span>منشور على إنستغرام · ديسمبر 2025</span></span></a></li></ul>
   </div>
 </section>
-<section class="shot prog" id="live" data-name="التغطيات الحية" data-kind="screen" data-img="img/ice-live.webp" data-sats="img/sm/yt-zxZzshPJFcw.webp,img/sm/stage.webp,img/sm/yt-O3kTwXOGVQ0.webp,img/sm/multiview-night.webp" aria-labelledby="h-live">
-  <figure class="pic"><img src="img/ice-live.webp" alt="" width="1280" height="720" loading="lazy"></figure>
-  <div class="cap">
-    <h2 id="h-live">التغطيات الحية</h2>
-    <p class="meta">مباشر · 2024–2026</p>
-    <p class="lead">مفيش زرار يعيد اللحظة لما الكلام يطلع على الهوا.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
-  </div>
-  <div class="sheet">
-    <p>من 2024 لـ2026، التغطيات الحية من قلب المناسبة.. عيد الاتحاد 54، والأعياد، ورأس السنة. مفيش زرار يعيد اللحظة لما الكلام يطلع على الهوا.</p>
-    <p class="role"><b>دوري</b> خططت للتغطيات.. وكتبت كلام المذيعين على الهوا، والتعليق الصوتي.</p>
-    <ul class="lnks"><li><a class="lnk" href="https://www.youtube.com/watch?v=zxZzshPJFcw" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-zxZzshPJFcw.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>عيد الاتحاد 54</b><span>برومو التغطية الخاصة</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/playlist?list=PL7AusoOPuXiksvKpc0mu17geMNZHcs7B9" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>عيد الاتحاد 54 · التغطية</b><span>قائمة تشغيل على يوتيوب</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=O3kTwXOGVQ0" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-O3kTwXOGVQ0.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>من العايدين</b><span>عيد الفطر · قناة أبوظبي · مارس 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DLNcvC_PWRp/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>من العايدين · فلر عيد الأضحى</b><span>رحلة أغاني العيد عبر الزمن · يونيو 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DLNeCLENA6p/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>من العايدين · كواليس التصوير</b><span>ريل على إنستغرام · يونيو 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/C5DiQbSM4KJ/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>أكملوا المسيرة · الشيخ محمد بن خليفة آل نهيان</b><span>قناة الإمارات · مارس 2024</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/C5FsmGIte5-/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>أكملوا المسيرة · حسن بن محمد الشيخ</b><span>قناة الإمارات · مارس 2024</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DIeiij2z9uw/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>فعاليات · فلر لقناة أبوظبي</b><span>كتبت السكريبت · أبريل 2025</span></span></a></li></ul>
-  </div>
-</section>
-<section class="shot prog" id="taabeer" data-name="تعابير أبوظبي" data-kind="screen" data-img="img/ice-taabeer.webp" data-sats="img/sm/painter.webp,img/sm/piano.webp,img/sm/painter-wide.webp" aria-labelledby="h-taabeer">
+<section class="shot k-screen" id="taabeer" data-name="تعابير أبوظبي" data-kind="screen" data-img="img/ice-taabeer.webp" data-year="2023" data-mood="paint" data-tint="#f0b46a" data-paper="بندخل مراسم فنانين إماراتيين.. نشوف الفن من المكان اللي بيتعمل فيه، مش من بعيد." data-sats="img/sm/painter.webp,img/sm/piano.webp,img/sm/painter-wide.webp" aria-labelledby="h-taabeer">
   <figure class="pic"><img src="img/ice-taabeer.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-taabeer">تعابير أبوظبي</h2>
     <p class="meta">ثقافة وترفيه · موسمين · 26 حلقة · من 2023</p>
     <p class="lead">بندخل مراسم فنانين إماراتيين.. نشوف الفن من المكان اللي بيتعمل فيه، مش من بعيد.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
   </div>
   <div class="sheet">
     <p>من 2023، «تعابير أبوظبي» في موسمين بيدخل مراسم فنانين إماراتيين.. نشوف الفن البصري من المكان اللي بيتعمل فيه، مش من بعيد.</p>
@@ -152,27 +146,13 @@
     <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/taabeer-abu-dhabi/705291816383" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>على منصة ADMN في STARZPLAY</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/C_8fElQxvyL/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>برومو الموسم التاني</b><span>خط عربي ورسم ورقص معاصر وكمان وخزف، في أقل من دقيقة</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/playlist?list=PL7AusoOPuXimVc8pMsZS9h0P9OXBrgPVI" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الموسم الأول</b><span>26 حلقة · يوتيوب قناة أبوظبي</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/playlist?list=PL7AusoOPuXilIS_VDwzkeIQaUAbYhp7cx" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الموسم التاني</b><span>125 مقطع من الموسم · يوتيوب قناة أبوظبي</span></span></a></li></ul>
   </div>
 </section>
-<section class="shot prog" id="autoplus" data-name="أوتو بلس" data-kind="screen" data-img="img/ice-autoplus.webp" data-sats="img/sm/autoplus-monitor.webp,img/sm/yt-ivxXu3mau-M.webp,img/sm/autoplus-set.webp,img/sm/monitor-closeup.webp" aria-labelledby="h-autoplus">
-  <figure class="pic"><img src="img/ice-autoplus.webp" alt="" width="1280" height="720" loading="lazy"></figure>
-  <div class="cap">
-    <h2 id="h-autoplus">أوتو بلس</h2>
-    <p class="meta">ثقافة وترفيه · 2025 · 15 حلقة</p>
-    <p class="lead">مفيش طريق قدامنا هنا.. بس فيه كلام كتير عن العربيات.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
-  </div>
-  <div class="sheet">
-    <p>«أوتو بلس» سنة 2025.. 15 حلقة لعشاق العربيات، قاعدين على كنبة الاستوديو. مفيش طريق قدامنا هنا.. بس فيه كلام كتير عن العربيات.</p>
-    <p class="role"><b>دوري</b> اشتغلت على شكل البرنامج واختيار ضيوفه ومواضيعه.. وكتبت الأسئلة والسكريبت.</p>
-    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/auto/726959656025" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>على منصة ADMN في STARZPLAY</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=ivxXu3mau-M" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-ivxXu3mau-M.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>صحح معلوماتك عن سيارتك</b><span>مقطع على يوتيوب</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DO5lDIGATwJ/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>كواليس برومو أوتو بلس</b><span>ريل على إنستغرام · سبتمبر 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/p/DQrKP_JE_gp/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>فريق أوتو بلس.. بعد النجاح</b><span>صور من الكواليس · نوفمبر 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/p/DSKjNwrExyg/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>كواليس أوتو بلس</b><span>منشور على إنستغرام · ديسمبر 2025</span></span></a></li></ul>
-  </div>
-</section>
-<section class="shot prog" id="chef" data-name="تجربة شيف" data-kind="screen" data-img="img/ice-chef.webp" aria-labelledby="h-chef">
+<section class="shot k-screen" id="chef" data-name="تجربة شيف" data-kind="screen" data-img="img/ice-chef.webp" data-year="2025" data-mood="warm" data-tint="#ffb26b" data-paper="وصفات إماراتية بنكهات جاية من مطابخ تانية." data-sats="vid:dunes" aria-labelledby="h-chef">
   <figure class="pic"><img src="img/ice-chef.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-chef">تجربة شيف</h2>
     <p class="meta">طبخ · 2025</p>
     <p class="lead">وصفات إماراتية بنكهات جاية من مطابخ تانية.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
   </div>
   <div class="sheet">
     <p>في «تجربة شيف» سنة 2025، الشيف الإيطالي جوزيبي إيانوتي بيقدم وصفات إماراتية بنكهات جاية من مطابخ تانية.. ومعاه سالم سيف المزروعي.</p>
@@ -180,41 +160,28 @@
     <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/chef-experience/714745384333" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقة كاملة</b><span>على منصة ADMN في STARZPLAY</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/playlist?list=PL7AusoOPuXil191erEWqm1WZL8zzQ9HBs" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>مقاطع البرنامج</b><span>قائمة تشغيل على يوتيوب</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DEh4bwwPSZG/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>مغامرة الأربع أيام</b><span>ريل على إنستغرام · يناير 2025</span></span></a></li></ul>
   </div>
 </section>
-<section class="shot prog" id="ramadan" data-name="نكهات شبابية وسر الطبخة" data-kind="screen" data-img="img/ice-ramadan.webp" aria-labelledby="h-ramadan">
-  <figure class="pic"><img src="img/ice-ramadan.webp" alt="" width="1280" height="720" loading="lazy"></figure>
+<section class="shot k-screen" id="live" data-name="التغطيات الحية" data-kind="screen" data-img="img/ice-live.webp" data-year="2024–2026" data-mood="tally" data-tint="#ff5a4a" data-paper="مفيش زرار يعيد اللحظة لما الكلام يطلع على الهوا." data-sats="vid:fireworks,img/sm/stage.webp,img/sm/yt-zxZzshPJFcw.webp,img/sm/multiview-night.webp" aria-labelledby="h-live">
+  <figure class="pic"><img src="img/ice-live.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
-    <h2 id="h-ramadan">نكهات شبابية وسر الطبخة</h2>
-    <p class="meta">طبخ · رمضان 2025–2026 · 45 حلقة</p>
-    <p class="lead">أكلات كلاسيكية بلمسة حديثة، ووصفات فيها مكون محدش كان متوقعه.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
+    <h2 id="h-live">التغطيات الحية</h2>
+    <p class="meta">مباشر · 2024–2026</p>
+    <p class="lead">مفيش زرار يعيد اللحظة لما الكلام يطلع على الهوا.</p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
   </div>
+  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>على الهوا مفيش «نعيد تاني».</aside>
   <div class="sheet">
-    <p>في رمضان 2025 و2026، «نكهات شبابية» و«سر الطبخة».. 45 حلقة بين أكلات كلاسيكية بلمسة حديثة، ووصفات فيها مكون محدش كان متوقعه.</p>
-    <p class="role"><b>دوري</b> اشتغلت على شكل البرنامجين.. وكتبت السكريبت والتعليق الصوتي.</p>
-    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/sirr-altabkha-ma-chef-sumayya/705288232425/s2" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>سر الطبخة مع الشيف سمية</b><span>الشيف سمية عبيد · الموسم التاني · 30 حلقة</span></span></a></li><li><a class="lnk" href="https://starzplay.com/en/admn/series/nakahaat-shababiyya/705295400253" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>نكهات شبابية</b><span>ميرا النقبي وأحمد درويش · 15 حلقة</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DIY5w-aPh4b/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>نكهات شبابية · مقطع من البرنامج</b><span>ريل على إنستغرام · أبريل 2025</span></span></a></li></ul>
+    <p>من 2024 لـ2026، التغطيات الحية من قلب المناسبة.. عيد الاتحاد 54، والأعياد، ورأس السنة. مفيش زرار يعيد اللحظة لما الكلام يطلع على الهوا.</p>
+    <p class="role"><b>دوري</b> خططت للتغطيات.. وكتبت كلام المذيعين على الهوا، والتعليق الصوتي.</p>
+    <ul class="lnks"><li><a class="lnk" href="https://www.youtube.com/watch?v=zxZzshPJFcw" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-zxZzshPJFcw.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>عيد الاتحاد 54</b><span>برومو التغطية الخاصة</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/playlist?list=PL7AusoOPuXiksvKpc0mu17geMNZHcs7B9" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>عيد الاتحاد 54 · التغطية</b><span>قائمة تشغيل على يوتيوب</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/C5DiQbSM4KJ/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>أكملوا المسيرة · الشيخ محمد بن خليفة آل نهيان</b><span>قناة الإمارات · مارس 2024</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/C5FsmGIte5-/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>أكملوا المسيرة · حسن بن محمد الشيخ</b><span>قناة الإمارات · مارس 2024</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=O3kTwXOGVQ0" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-O3kTwXOGVQ0.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>من العايدين</b><span>عيد الفطر · قناة أبوظبي · مارس 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DLNcvC_PWRp/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>من العايدين · فلر عيد الأضحى</b><span>رحلة أغاني العيد عبر الزمن · يونيو 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DLNeCLENA6p/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>من العايدين · كواليس التصوير</b><span>ريل على إنستغرام · يونيو 2025</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DIeiij2z9uw/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>فعاليات · فلر لقناة أبوظبي</b><span>كتبت السكريبت · أبريل 2025</span></span></a></li></ul>
   </div>
 </section>
-<section class="shot prog" id="akher" data-name="آخر الأسبوع" data-kind="screen" data-img="img/ice-akher.webp" aria-labelledby="h-akher">
-  <figure class="pic"><img src="img/ice-akher.webp" alt="" width="1280" height="720" loading="lazy"></figure>
-  <div class="cap">
-    <h2 id="h-akher">آخر الأسبوع</h2>
-    <p class="meta">ثقافة وترفيه · 3 مواسم · 37 حلقة</p>
-    <p class="lead">عشان السؤال المعتاد: نروح فين؟ يلاقي إجابة.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
-  </div>
-  <div class="sheet">
-    <p>«آخر الأسبوع».. 3 مواسم و37 حلقة، بنلف فيها على فعاليات الإمارات وأماكن الويك إند. عشان السؤال المعتاد: نروح فين؟ يلاقي إجابة.</p>
-    <p class="role"><b>دوري</b> جهزت الفقرات والضيوف والترند والأسئلة.. وكتبت السكريبت.</p>
-    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/akher-alosbou/705291816428" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>إيمان زينل وعيسى الكعبي · ADMN في STARZPLAY</span></span></a></li></ul>
-  </div>
-</section>
-<section class="shot prog" id="madeem" data-name="حملة مديم ونمو" data-kind="screen" data-img="img/ice-madeem.webp" aria-labelledby="h-madeem">
+<section class="shot k-screen" id="madeem" data-name="حملة مديم ونمو" data-kind="screen" data-img="img/ice-madeem.webp" data-year="2026" data-mood="warm" data-tint="#ffd9a8" data-paper="يقولون أو ما يقولون، عيالنا ذخرنا ورايتنا." aria-labelledby="h-madeem">
   <figure class="pic"><img src="img/ice-madeem.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-madeem">حملة مديم ونمو</h2>
     <p class="meta">حملة · قناة أبوظبي · مارس 2026</p>
     <p class="lead">يقولون أو ما يقولون، عيالنا ذخرنا ورايتنا.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح الورقة</button></p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
   </div>
   <div class="sheet">
     <p>حملة على قناة أبوظبي مع دائرة تنمية المجتمع، لبرنامجي «مديم» و«نمو».. وفكرتها كلها في سطر: يقولون أو ما يقولون، عيالنا ذخرنا ورايتنا.</p>
@@ -222,22 +189,65 @@
     <ul class="lnks"><li><a class="lnk" href="https://www.instagram.com/reel/DVjMnMNiffw/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>عيالنا.. ذخرنا ورايتنا</b><span>إنستغرام قناة أبوظبي · 6 مارس 2026</span></span></a></li></ul>
   </div>
 </section>
-<section class="shot after" id="bts" data-name="الكواليس" data-kind="wall" data-img="vid/showreel-thumb.webp" aria-labelledby="h-bts">
+<section class="shot k-screen" id="masaa" data-name="مساء أبوظبي" data-kind="screen" data-img="img/ice-masaa.webp" data-mood="rundown" data-tint="#a9b8ff" data-paper="ضيف في الاستوديو، ومراسل في الميدان، وترند بيخبط على باب الحلقة من غير ميعاد." data-sats="img/sm/yt-84LC9u8oJOQ.webp,img/sm/guest.webp" aria-labelledby="h-masaa">
+  <figure class="pic"><img src="img/ice-masaa.webp" alt="" width="1280" height="720" loading="lazy"></figure>
+  <div class="cap">
+    <h2 id="h-masaa">مساء أبوظبي</h2>
+    <p class="meta">مباشر · 6 مواسم</p>
+    <p class="lead">ضيف في الاستوديو، ومراسل في الميدان، وترند بيخبط على باب الحلقة من غير ميعاد.</p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
+  </div>
+  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>القهوة خلصت.. بس الفقرة لسه.</aside>
+  <div class="sheet">
+    <p>«مساء أبوظبي».. 6 مواسم على الهوا. ضيف في الاستوديو، ومراسل في الميدان، وترند بيخبط على باب الحلقة من غير ميعاد.</p>
+    <p class="role"><b>دوري</b> جهزت الفقرات والضيوف والترند.. وكتبت أسئلة الضيوف وسكريبت المذيعين.</p>
+    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/masaa-abu-dhabi/705293352151" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>على منصة ADMN في STARZPLAY</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/playlist?list=PLOjgSWqRGq6o" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>مقاطع الموسم السادس</b><span>أكتر من 200 مقطع · يوتيوب قناة أبوظبي</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=Vir64ufkZKw" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>حلقة 6 نوفمبر 2026</b><span>مقطع على يوتيوب</span></span></a></li><li><a class="lnk" href="https://www.youtube.com/watch?v=84LC9u8oJOQ" target="_blank" rel="noopener noreferrer"><img class="th" src="img/sm/yt-84LC9u8oJOQ.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>حلقة 30 أكتوبر 2026</b><span>انطلاق مهرجان الشيخ زايد</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/Dd_22hzDF45/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>روكي.. حلم اتحقق</b><span>تقرير نادي السينما · 2 أكتوبر 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DdrUDUrCQQa/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>عدنان الطلياني</b><span>تقرير أيقونات · 24 سبتمبر 2026</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DdWpyy2ksLn/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الأب الروحي.. الفيلم اللي كان ممكن ما يشوفش النور</b><span>تقرير نادي السينما · 16 سبتمبر 2026</span></span></a></li></ul>
+  </div>
+</section>
+<section class="shot k-screen" id="ramadan" data-name="نكهات شبابية وسر الطبخة" data-kind="screen" data-img="img/ice-ramadan.webp" data-year="2025–2026" data-mood="warm" data-tint="#ffc57a" data-paper="أكلات كلاسيكية بلمسة حديثة، ووصفات فيها مكون محدش كان متوقعه." data-sats="img/lg/art-nakahat.webp" aria-labelledby="h-ramadan">
+  <figure class="pic"><img src="img/ice-ramadan.webp" alt="" width="1280" height="720" loading="lazy"></figure>
+  <div class="cap">
+    <h2 id="h-ramadan">نكهات شبابية وسر الطبخة</h2>
+    <p class="meta">طبخ · رمضان 2025–2026 · 45 حلقة</p>
+    <p class="lead">أكلات كلاسيكية بلمسة حديثة، ووصفات فيها مكون محدش كان متوقعه.</p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
+  </div>
+  <div class="sheet">
+    <p>في رمضان 2025 و2026، «نكهات شبابية» و«سر الطبخة».. 45 حلقة بين أكلات كلاسيكية بلمسة حديثة، ووصفات فيها مكون محدش كان متوقعه.</p>
+    <p class="role"><b>دوري</b> اشتغلت على شكل البرنامجين.. وكتبت السكريبت والتعليق الصوتي.</p>
+    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/sirr-altabkha-ma-chef-sumayya/705288232425/s2" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>سر الطبخة مع الشيف سمية</b><span>الشيف سمية عبيد · الموسم التاني · 30 حلقة</span></span></a></li><li><a class="lnk" href="https://starzplay.com/en/admn/series/nakahaat-shababiyya/705295400253" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>نكهات شبابية</b><span>ميرا النقبي وأحمد درويش · 15 حلقة</span></span></a></li><li><a class="lnk" href="https://www.instagram.com/reel/DIY5w-aPh4b/" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>نكهات شبابية · مقطع من البرنامج</b><span>ريل على إنستغرام · أبريل 2025</span></span></a></li></ul>
+  </div>
+</section>
+<section class="shot k-screen" id="akher" data-name="آخر الأسبوع" data-kind="screen" data-img="img/ice-akher.webp" data-mood="speed" data-tint="#c9a8ff" data-paper="عشان السؤال المعتاد: نروح فين؟ يلاقي إجابة." aria-labelledby="h-akher">
+  <figure class="pic"><img src="img/ice-akher.webp" alt="" width="1280" height="720" loading="lazy"></figure>
+  <div class="cap">
+    <h2 id="h-akher">آخر الأسبوع</h2>
+    <p class="meta">ثقافة وترفيه · 3 مواسم · 37 حلقة</p>
+    <p class="lead">عشان السؤال المعتاد: نروح فين؟ يلاقي إجابة.</p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح الورقة</button></p>
+  </div>
+  <div class="sheet">
+    <p>«آخر الأسبوع».. 3 مواسم و37 حلقة، بنلف فيها على فعاليات الإمارات وأماكن الويك إند. عشان السؤال المعتاد: نروح فين؟ يلاقي إجابة.</p>
+    <p class="role"><b>دوري</b> جهزت الفقرات والضيوف والترند والأسئلة.. وكتبت السكريبت.</p>
+    <ul class="lnks"><li><a class="lnk" href="https://starzplay.com/en/admn/series/akher-alosbou/705291816428" target="_blank" rel="noopener noreferrer"><span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span><span class="txt"><b>الحلقات كاملة</b><span>إيمان زينل وعيسى الكعبي · ADMN في STARZPLAY</span></span></a></li></ul>
+  </div>
+</section>
+<section class="shot k-wall" id="bts" data-name="الكواليس" data-kind="wall" data-img="vid/showreel-thumb.webp" data-tint="#ffd9a8" data-wall="img/sm/painter-wide.webp,img/sm/smoke.webp,vid:crew-desert,img/sm/desert-crew.webp,reel,img/sm/operator.webp,vid:night-lights,img/sm/piano.webp,img/sm/crew.webp" aria-labelledby="h-bts">
   <figure class="pic"><img src="vid/showreel-thumb.webp" alt="" width="1280" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-bts">اللقطة.. وراها ناس</h2>
-    <p class="lead">في غرفة التحكم قدام حيطة الشاشات، ووسط كثبان الصحرا، وورا الكاميرا في معرض.</p>
+    <p class="lead">ورا كل لقطة ناس.. في غرفة التحكم قدام حيطة الشاشات، ووسط كثبان الصحرا، وورا الكاميرا في معرض.</p>
     <p>اللي قدام الكاميرا بيبان.. واللي وراها بيسند الحكاية.</p>
-    <p class="go"><button type="button" class="btn" data-reel><i class="dot"></i>شغل الريل</button><span class="hint">تحت الهوا في 50 ثانية</span></p>
+    <p class="go"><button type="button" class="btn" data-do="reel"><i class="dot"></i>شغل الريل</button><span class="hint">تحت الهوا في 50 ثانية</span></p>
   </div>
 </section>
-<section class="shot after" id="credits" data-name="التترات" data-kind="screen" data-img="vid/crew-desert.webp" data-sats="img/sm/crew-bw.webp,img/sm/smoke.webp,img/sm/desert-crew.webp" aria-labelledby="h-credits">
-  <figure class="pic"><img src="vid/crew-desert.webp" alt="" width="960" height="540" loading="lazy"></figure>
+<section class="shot k-screen" id="credits" data-name="التترات" data-kind="screen" data-img="img/lg/hero.webp" data-tint="#ffd9a8" data-paper="إعداد وسيناريو: حجازي سعد." data-sats="img/sm/crew-bw.webp,img/sm/camera.webp,img/sm/guest.webp" aria-labelledby="h-credits">
+  <figure class="pic"><img src="img/lg/hero.webp" alt="" width="1400" height="1050" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-credits">التترات</h2>
     <p class="lead">إعداد وسيناريو: حجازي سعد.</p>
     <p>14 عنوان على الشاشة.. وقبلهم 6 محطات في الصحافة والأخبار، من القاهرة لأبوظبي.</p>
-    <p class="go"><button type="button" class="btn" data-sheet><i class="dot"></i>افتح التترات</button></p>
+    <p class="go"><button type="button" class="btn" data-do="sheet"><i class="dot"></i>افتح التترات</button></p>
   </div>
   <div class="sheet">
     <h3>على الشاشة</h3>
@@ -246,31 +256,44 @@
     <ul class="roll"><li><b>Insight Event Management</b><span>محرر أول</span><small>أبوظبي · 2022–2023</small></li><li><b>الشرق للأخبار</b><span>منتج أخبار أول</span><small>دبي · 2020–2022</small></li><li><b>العين الإخبارية</b><span>منتج أخبار أول</span><small>أبوظبي · 2017–2020</small></li><li><b>صحيفة الخليج</b><span>محرر ديسك المنوعات</span><small>الشارقة · 2014–2017</small></li><li><b>جريدة الوطن</b><span>محرر أول، القسم السياسي</span><small>القاهرة · 2012–2014</small></li><li><b>الشروق</b><span>صحفي وصانع محتوى</span><small>القاهرة · 2010–2012</small></li></ul>
   </div>
 </section>
-<section class="shot after" id="close" data-name="سؤال واحد" data-kind="end" data-img="img/sm/footprints.webp" aria-labelledby="h-close">
+<section class="shot k-end" id="close" data-name="سؤال واحد" data-kind="end" data-img="img/sm/footprints.webp" aria-labelledby="h-close">
   <figure class="pic"><img src="img/sm/footprints.webp" alt="" width="540" height="720" loading="lazy"></figure>
   <div class="cap">
     <h2 id="h-close">وفي الآخر.. سؤال واحد</h2>
     <p class="lead">كل مرة أبدأ، بسأل نفسي: ليه المشاهد هيفضل معانا لحد الآخر؟</p>
-    <p>يمكن عشان تفصيلة صغيرة، أو سؤال جه في وقته، أو حكاية فتحت باب للتانية. السؤال ده بيفضل معايا.. حتى بعد ما اللمبة الحمرا تطفي.</p>
+    <p>يمكن عشان تفصيلة صغيرة، أو سؤال جه في وقته، أو حكاية فتحت باب للتانية. السؤال ده بيفضل معايا.. حتى بعد ما الهوا يخلص.</p>
+    <p>دي كانت شوية حكايات من اللي اشتغلت عليها.. ولسه في حاجات كتير نفسي أكتبها.</p>
     <p class="go"><a class="btn" href="https://www.linkedin.com/in/hegazy-saad" target="_blank" rel="noopener noreferrer"><i class="dot"></i>نكمل الحكاية على لينكد إن</a><a class="mail" href="mailto:hegazy.saad@hotmail.com">hegazy.saad@hotmail.com</a></p>
-    <p class="fine">© 2026 حجازي سعد · اللينكات بتفتح صفحات النشر الأصلية · <a href="v3.html">النسخة اللي فاتت</a></p>
+    <p class="fine">© 2026 حجازي سعد · اللينكات بتفتح صفحات النشر الأصلية للقنوات والمنصات. · <a href="v3.html">النسخة اللي فاتت</a></p>
   </div>
 </section>
 </main>
 <div id="track" aria-hidden="true"></div>
-<button type="button" id="cue" class="cue" hidden><i class="dot"></i><b>كيو</b><span id="cueTxt"></span></button>
+<p class="year" id="year" aria-hidden="true"><small>آلة الزمن</small><b id="yearN"></b></p>
+<nav class="cuebar" aria-label="تنقل بين المشاهد">
+  <button type="button" id="prev" class="cue alt" hidden aria-label="المشهد اللي قبله">اللي قبله</button>
+  <button type="button" id="cue" class="cue" hidden><i class="dot"></i><b>كيو</b><span id="cueTxt"></span></button>
+</nav>
+<div id="tip" role="tooltip" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
 <dialog id="runDlg" aria-labelledby="runH">
   <form method="dialog"><h2 id="runH">ترتيب الحلقة</h2><button class="x">اقفل</button></form>
-  <ol><li><a href="#top">البداية</a></li><li><a href="#me">حجازي سعد</a></li><li><a href="#newsroom">غرفة الأخبار</a></li><li><a href="#studio">الاستوديو</a></li><li><a href="#voices">صوتين</a></li><li><a href="#onair">على الهوا</a></li><li><a href="#documentary">الفيلم الوثائقي</a></li><li><a href="#mawjat">موجات</a></li><li><a href="#masaa">مساء أبوظبي</a></li><li><a href="#live">التغطيات الحية</a></li><li><a href="#taabeer">تعابير أبوظبي</a></li><li><a href="#autoplus">أوتو بلس</a></li><li><a href="#chef">تجربة شيف</a></li><li><a href="#ramadan">نكهات شبابية وسر الطبخة</a></li><li><a href="#akher">آخر الأسبوع</a></li><li><a href="#madeem">حملة مديم ونمو</a></li><li><a href="#bts">الكواليس</a></li><li><a href="#credits">التترات</a></li><li><a href="#close">سؤال واحد</a></li></ol>
+  <ol><li><a href="#top">غرفة الكتابة</a></li><li><a href="#me">قبل الهوا</a></li><li><a href="#newsroom">غرفة الأخبار</a></li><li><a href="#studio">الاستوديو</a></li><li><a href="#voices">صوتين</a></li><li><a href="#documentary">الفيلم الوثائقي<small>2026</small></a></li><li><a href="#onair">على الهوا</a></li><li><a href="#mawjat">موجات<small>2026</small></a></li><li><a href="#autoplus">أوتو بلس<small>2025</small></a></li><li><a href="#taabeer">تعابير أبوظبي<small>2023</small></a></li><li><a href="#chef">تجربة شيف<small>2025</small></a></li><li><a href="#live">التغطيات الحية<small>2024–2026</small></a></li><li><a href="#madeem">حملة مديم ونمو<small>2026</small></a></li><li><a href="#masaa">مساء أبوظبي</a></li><li><a href="#ramadan">نكهات شبابية وسر الطبخة<small>2025–2026</small></a></li><li><a href="#akher">آخر الأسبوع</a></li><li><a href="#bts">الكواليس</a></li><li><a href="#credits">التترات</a></li><li><a href="#close">سؤال واحد</a></li></ol>
+</dialog>
+<dialog id="workDlg" aria-labelledby="workH">
+  <form method="dialog"><h2 id="workH">الشغل على طول</h2><button class="x">اقفل</button></form>
+  <ul class="work"><li><a href="#documentary" data-open="documentary"><img src="img/ice-documentary.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>50 عاما نصون مكتسبات الوطن</b><span>وثائقي · قناة أبوظبي · نوفمبر 2026</span></span></a></li><li><a href="#mawjat" data-open="mawjat"><img src="img/ice-mawjat.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>موجات</b><span>حوار · الموسم السابع · 2026</span></span></a></li><li><a href="#autoplus" data-open="autoplus"><img src="img/ice-autoplus.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>أوتو بلس</b><span>ثقافة وترفيه · 2025 · 15 حلقة</span></span></a></li><li><a href="#taabeer" data-open="taabeer"><img src="img/ice-taabeer.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>تعابير أبوظبي</b><span>ثقافة وترفيه · موسمين · 26 حلقة · من 2023</span></span></a></li><li><a href="#chef" data-open="chef"><img src="img/ice-chef.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>تجربة شيف</b><span>طبخ · 2025</span></span></a></li><li><a href="#live" data-open="live"><img src="img/ice-live.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>التغطيات الحية</b><span>مباشر · 2024–2026</span></span></a></li><li><a href="#madeem" data-open="madeem"><img src="img/ice-madeem.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>حملة مديم ونمو</b><span>حملة · قناة أبوظبي · مارس 2026</span></span></a></li><li><a href="#masaa" data-open="masaa"><img src="img/ice-masaa.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>مساء أبوظبي</b><span>مباشر · 6 مواسم</span></span></a></li><li><a href="#ramadan" data-open="ramadan"><img src="img/ice-ramadan.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>نكهات شبابية وسر الطبخة</b><span>طبخ · رمضان 2025–2026 · 45 حلقة</span></span></a></li><li><a href="#akher" data-open="akher"><img src="img/ice-akher.webp" alt="" width="320" height="180" loading="lazy"><span class="txt"><b>آخر الأسبوع</b><span>ثقافة وترفيه · 3 مواسم · 37 حلقة</span></span></a></li></ul>
+  <p class="more"><a href="#credits" data-open="credits">التترات كاملة.. وقبل التلفزيون</a></p>
 </dialog>
 <dialog id="sheetDlg" aria-labelledby="sheetH">
-  <form method="dialog"><button class="x">اقفل الورقة</button></form>
-  <div class="paper"><i class="dot"></i><h2 id="sheetH"></h2><p class="meta" id="sheetMeta"></p><div id="sheetBody"></div></div>
+  <form method="dialog"><button type="button" class="x alt" id="share">انسخ اللينك</button><button class="x">اقفل الورقة</button></form>
+  <div class="paper"><i class="dot"></i><h2 id="sheetH"></h2><p class="meta" id="sheetMeta"></p><div id="sheetBody"></div><p class="jump"><a id="sheetGo" href="#">روح للمشهد ده في الرحلة</a></p></div>
 </dialog>
 <dialog id="reelDlg" aria-label="تحت الهوا في 50 ثانية">
   <form method="dialog"><button class="x">اقفل</button></form>
-  <video id="reel" src="vid/showreel.mp4" poster="vid/showreel-thumb.webp" controls playsinline preload="none"></video>
+  <video id="reel" poster="vid/showreel-thumb.webp" controls playsinline preload="none"></video>
 </dialog>
+<script>/* لو الـ3D مش شغال، القوائم والروابط تفضل شغالة */document.addEventListener('click',function(e){if(document.documentElement.classList.contains('js3d'))return;var c=function(s){return e.target.closest&&e.target.closest(s)};var t=c('[data-do]');if(t){var id={run:'runDlg',work:'workDlg',reel:'reelDlg'}[t.getAttribute('data-do')];var d=id&&document.getElementById(id);if(d&&d.showModal&&!d.open){if(id=='reelDlg'){var v=document.getElementById('reel');if(!v.src)v.src='vid/showreel.mp4'}d.showModal()}else if(t.getAttribute('data-do')=='next'){location.hash='#me'}}var a=c('dialog a[href^="#"]');if(a){var p=a.closest('dialog');if(p&&p.close)p.close()}});</script>
 <script type="module" src="take.js"></script>
 </body>
 </html>

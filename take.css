@@ -43,17 +43,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes tally{50%{opacity:.3}}
 
 /* ---- شريط التحكم ---- */
-.bar{position:fixed;inset-block-start:0;inset-inline:0;z-index:20;height:var(--bar);display:flex;align-items:center;gap:20px;padding-inline:var(--pad);background:var(--bg)}
+.bar{position:fixed;inset-block-start:0;inset-inline:0;z-index:20;height:var(--bar);display:flex;align-items:center;gap:20px;padding-inline:max(var(--pad),env(safe-area-inset-left,0px)) max(var(--pad),env(safe-area-inset-right,0px));background:var(--bg)}
 .gl .bar{background:none}
 .name{font:700 1.75rem/1 "Aref Ruqaa",serif;text-decoration:none;padding-block:8px}
 .state{display:flex;align-items:center;gap:10px;margin-inline-start:auto;font-weight:400;font-size:1rem;color:var(--dim)}
-.tc{font-variant-numeric:tabular-nums;font-weight:500;color:var(--ink);min-width:3.4em;text-align:end}
+.tc{font-variant-numeric:tabular-nums;font-weight:500;color:var(--ink);min-width:6.6em;text-align:end;padding:6px 0;cursor:pointer}
+.tc.stby{color:#43d68e}
 [data-act="air"] .state{color:var(--ink)}
 [data-act="air"] .state .dot,[data-act="air"] .cue .dot{background:var(--red)}
 [data-act="air"] .state .dot{animation:tally 1.6s steps(2,jump-none) infinite}
-#runBtn{font-weight:400;font-size:1rem;padding:8px 14px;border-radius:6px;background:var(--lift);transition:background .25s}
-#runBtn:hover{background:#2a2521}
-#runBtn:active{transform:translateY(1px)}
+.hb{font-weight:400;font-size:1rem;padding:8px 14px;border-radius:6px;background:var(--lift);transition:background .25s}
+.hb:hover{background:#2a2521}
+.hb:active{transform:translateY(1px)}
+.bar .hb + .hb{margin-inline-start:-8px}
 
 /* ---- الخطوط والمحتوى ---- */
 h1,h2{font-family:"Aref Ruqaa",serif;font-weight:700;text-wrap:balance}
@@ -74,6 +76,9 @@ h3{font-weight:500;font-size:1.125rem;margin-block:36px 6px}
 .btn .dot{background:var(--red)}
 .btn:hover{background:#fff;transform:translateY(-2px)}
 .btn:active{transform:translateY(0)}
+.btn.ghost{background:var(--lift);color:var(--ink)}
+.btn.ghost:hover{background:#2a2521}
+.btn.ghost .dot{background:var(--idle)}
 .mail{font-weight:400;text-underline-offset:5px}
 .fine{font-size:.9rem;color:var(--dim) !important;margin-block-start:22px !important}
 
@@ -98,7 +103,10 @@ main{padding-block-start:var(--bar)}
 .pic img{display:block;width:100%;height:auto;border-radius:8px;margin-block-end:24px}
 .shot[data-kind="me"] .pic img,.shot[data-kind="end"] .pic img{max-width:300px}
 .sheet{margin-block-start:22px;color:var(--soft)}
-html:not(.gl) [data-sheet]{display:none}
+html:not(.gl) [data-do=sheet]{display:none}
+.note{margin-block-start:18px;max-width:22rem;color:var(--dim);font-size:1rem}
+.note b{display:block;font-weight:500;font-size:.85rem;color:var(--red)}
+.year,.bars,#tip,.cuebar{display:none}
 
 /* ---- الوضع الكامل: المشهد هو الصفحة ---- */
 .gl #stage{display:block}
@@ -116,17 +124,35 @@ html:not(.gl) [data-sheet]{display:none}
 .gl .on .cap > :nth-child(3){transition-delay:.16s}
 .gl .on .cap > :nth-child(4){transition-delay:.24s}
 .gl .on .cap > :nth-child(n+5){transition-delay:.32s}
-.gl .hero{justify-content:center;text-align:center}
-.gl .hero .cap{max-width:52rem}
-.gl .hero h1{margin-block-end:14px}
-.gl .hero .hint{margin-inline:auto}
+.gl .k-room h1{font-size:clamp(3.2rem,7vw,6.4rem);line-height:1.2;margin-block-end:8px}
+/* ملاحظة الهامش: ورقة صغيرة مايلة فوق شمال */
+.gl .note{position:absolute;inset-block-end:176px;inset-inline-end:var(--pad);margin:0;max-width:15rem;padding:12px 16px 14px;background:var(--paper);color:var(--paper-ink);font:700 1.25rem/1.5 "Aref Ruqaa",serif;border-radius:3px;rotate:2.5deg;opacity:0;translate:0 -14px;transition:opacity .4s,translate .4s}
+.gl .note b{font:500 .8rem/1.4 "Readex Pro",sans-serif;color:var(--red)}
+.gl .on .note{opacity:1;translate:0 0;transition:opacity .9s var(--ease) .7s,translate .9s var(--ease) .7s}
+/* آلة الزمن: السنة الحقيقية للعمل */
+.gl .year{display:block;position:fixed;z-index:6;inset-block-end:92px;inset-inline-end:var(--pad);margin:0;text-align:end;pointer-events:none;opacity:0;transition:opacity .5s}
+.gl .year.show{opacity:1}
+.year small{display:block;font-size:.85rem;color:var(--dim)}
+.year b{font:500 clamp(1.8rem,3.4vw,3rem)/1.1 "Readex Pro",sans-serif;font-variant-numeric:tabular-nums;color:var(--ink)}
+/* شرايط السينما للوثائقي */
+.gl .bars{display:block;position:fixed;inset:0;z-index:2;pointer-events:none}
+.bars::before,.bars::after{content:"";position:absolute;inset-inline:0;height:9vh;background:#000;transition:transform .9s var(--ease)}
+.bars::before{inset-block-start:0;transform:translateY(-101%)}
+.bars::after{inset-block-end:0;transform:translateY(101%)}
+[data-mood=letterbox] .bars::before,[data-mood=letterbox] .bars::after{transform:none}
+.gl #tip{display:block;position:fixed;z-index:30;pointer-events:none;background:var(--paper);color:var(--paper-ink);font-weight:400;font-size:.95rem;line-height:1.5;padding:6px 12px;border-radius:5px;max-width:16rem;translate:-50% calc(-100% - 16px)}
+.gl #tip[hidden]{display:none}
 
-.cue{position:fixed;z-index:15;inset-block-end:28px;inset-inline-end:var(--pad);display:flex;align-items:center;gap:10px;min-height:48px;padding:8px 18px;border-radius:8px;background:var(--lift);font-size:1rem;white-space:nowrap;transition:background .25s,transform .3s var(--ease)}
+.gl .cuebar{display:flex;gap:8px;position:fixed;z-index:15;inset-block-end:28px;inset-inline-end:var(--pad)}
+.cue{display:flex;align-items:center;gap:10px;min-height:48px;padding:8px 18px;border-radius:8px;background:var(--lift);font-size:1rem;white-space:nowrap;transition:background .25s,transform .3s var(--ease)}
 .cue[hidden]{display:none}
 .cue b{font-weight:500}
 .cue span{color:var(--dim)}
 .cue:hover{background:#2a2521;transform:translateY(-2px)}
 .cue:active{transform:translateY(1px)}
+.cue.alt{color:var(--dim)}
+#toast{position:fixed;z-index:40;inset-block-end:92px;left:50%;translate:-50% 12px;background:var(--paper);color:var(--paper-ink);font-weight:500;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .35s,translate .35s var(--ease);max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;translate:-50% 0}
 
 /* ---- النوافذ ---- */
 dialog{border:0;padding:0;background:var(--lift);color:var(--ink);border-radius:10px;max-width:min(92vw,960px);max-height:88vh}
@@ -137,10 +163,18 @@ dialog h2{font-size:2rem;margin:0}
 .x:hover{background:#3a342d}
 #runDlg{width:min(92vw,720px)}
 #runDlg ol{columns:2;column-gap:24px;padding:12px 24px 24px}
-#runDlg a{display:block;padding:9px 10px;border-radius:6px;text-decoration:none;font-weight:400;break-inside:avoid}
+#runDlg a{display:flex;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:6px;text-decoration:none;font-weight:400;break-inside:avoid}
 #runDlg a:hover,#runDlg a[aria-current]{background:#2a2521}
 #runDlg a[aria-current]{color:var(--red)}
+#runDlg small{color:var(--dim);font-variant-numeric:tabular-nums}
+#workDlg{width:min(94vw,860px)}
+.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px;padding:12px 24px 8px}
+.work a{display:flex;align-items:center;gap:14px;padding:8px;border-radius:8px;text-decoration:none;transition:background .25s}
+.work a:hover{background:#2a2521}
+.work img{flex:none;width:112px;height:63px;object-fit:cover;border-radius:5px}
+.more{padding:6px 32px 24px;color:var(--dim)}
 #reelDlg{background:#000;width:min(92vw,960px)}
+#reelDlg.tall{width:min(92vw,calc(76vh * 9 / 16))}
 #reelDlg form{padding:10px}
 #reelDlg video{display:block;width:100%;height:auto;max-height:76vh}
 
@@ -151,6 +185,8 @@ dialog h2{font-size:2rem;margin:0}
 #sheetDlg form{position:sticky;inset-block-start:0;padding:16px 28px;background:var(--paper);z-index:1}
 #sheetDlg .x{background:var(--paper-ink);color:var(--paper)}
 #sheetDlg .x:hover{background:#000}
+#sheetDlg .x.alt{background:#d5cdbd;color:var(--paper-ink);margin-inline-start:0}
+.jump{margin-block-start:28px !important;font-size:1rem}
 .paper{padding:8px 28px 56px}
 .paper > .dot{background:var(--red);width:14px;height:14px;margin-block-end:14px}
 .paper h2{font-size:clamp(2.2rem,5vw,3rem);line-height:1.3;margin-block-end:8px}
@@ -173,7 +209,15 @@ dialog h2{font-size:2rem;margin:0}
   [data-act="air"] .tc{display:none}
   .name{font-size:1.5rem}
   .bar{gap:12px}
-  .cue{inset-block-end:20px;inset-inline-end:auto;left:50%;translate:-50% 0}
+  .gl .cuebar{inset-block-end:calc(16px + env(safe-area-inset-bottom,0px));inset-inline-end:auto;left:50%;translate:-50% 0}
+  .gl .note{position:static;rotate:0deg;max-width:none;margin-block-start:12px;padding:8px 12px;font-size:1.05rem}
+  .gl .shot{flex-direction:column;justify-content:flex-end;align-items:stretch}
+  .gl .year{inset-block-end:auto;inset-block-start:calc(var(--bar) + 6px);inset-inline-end:16px}
+  .year b{font-size:1.4rem}
+  .work{grid-template-columns:1fr}
+  .bar .hb{padding:6px 10px;font-size:.92rem}
+  .state .tc{display:none}
+  .gl .k-room h1{font-size:clamp(2.8rem,13vw,4rem)}
   #runDlg ol{columns:1}
   .th,.ph{width:80px;height:45px}
 }
@@ -184,6 +228,22 @@ dialog h2{font-size:2rem;margin:0}
   .cap p{font-size:1rem;line-height:1.65}
   .go{margin-block-start:14px !important}
   .meta{margin-block:-4px 6px !important}
+}
+
+/* موبايل بالعرض وأي شاشة قصيرة جداً: نختصر الكلام ونصغّر الخطوط عشان الشاشة تلاقي مكان */
+@media (max-height:520px){
+  :root{--bar:52px}
+  .facts,.cap p:not(.lead):not(.go):not(.meta){display:none}
+  .cap p.lead{font-size:1rem;line-height:1.5}
+  h1{font-size:min(2.4rem,10vh)}
+  h2{font-size:min(2.2rem,9vh);margin-block-end:6px}
+  .gl .shot{padding-block-end:60px}
+  .go{margin-block-start:10px !important}
+  .btn{min-height:42px;padding:6px 16px}
+  .gl .cuebar{inset-block-end:10px}
+  .cue{min-height:40px}
+  .gl .note,.gl .year{display:none}
+  .name{font-size:1.4rem}
 }
 
 @media (prefers-reduced-motion:reduce){
