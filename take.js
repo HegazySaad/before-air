@@ -235,16 +235,20 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=(h(gl_FragCoord.xy)-.5)*uGrain*(.15+smoo
     renderer.setPixelRatio(dpr); renderer.setSize(W, H, false); composer.setPixelRatio(dpr); composer.setSize(W, H);
     camera.aspect = asp; camera.updateProjectionMatrix();
     partU.uPx.value = (narrow ? .05 : .046) * H * dpr / VIS;
-    let dMax = 8;
+    let dMax = 8; const bar = parseFloat(getComputedStyle(root).getPropertyValue('--bar')) || 60;
     st.forEach((s, i) => {
       if (s.kind === 'title') { const d = Math.max(8, WA / ((narrow ? .9 : .6) * VIS * asp)); s.C.set(0, 0, d); s.T.set(0, -.07 * VIS * d, 0); return; }
       if (s.kind === 'me') {
         const d = narrow ? Math.max(PH / (.44 * VIS), PW / (.82 * VIS * asp)) : PH / (.62 * VIS), vh = VIS * d;
         s.T.set(narrow ? 0 : vh * asp * .17, -(narrow ? .2 : .06) * vh, 0); s.C.set(s.T.x * .6, s.T.y, d); return;
       }
-      const d = Math.max(s.h / ((narrow ? .42 : .6) * VIS), s.w / ((narrow ? .96 : .6) * VIS * asp)), vh = VIS * d;
+      // المساحة الفاضية بين الشريط والكلام: الشاشة بتتمركز فيها ومش بتدخل تحت الكلام أو الشريط
+      const capEl = $('.cap', s.el), padB = parseFloat(getComputedStyle(s.el).paddingBottom) || 0;
+      const topY = bar + 14, botY = Math.max(topY + 120, H - padB - capEl.offsetHeight - 22), areaH = botY - topY;
+      const ff = areaH * .96 / H, wf = narrow ? .96 : .66;
+      const d = Math.max(s.h / (ff * VIS), s.w / (wf * VIS * asp)), vh = VIS * d, off = .5 - (topY + botY) / 2 / H;
       dMax = Math.max(dMax, d);
-      s.T.copy(s.M).add(new THREE.Vector3(narrow ? 0 : vh * asp * .03, -(narrow ? .2 : .17) * vh, 0));
+      s.T.copy(s.M).add(new THREE.Vector3(narrow ? 0 : vh * asp * .03, -off * vh, 0));
       s.C.copy(s.T).add(new THREE.Vector3((i % 2 ? 1 : -1) * (narrow ? .3 : .9), .2, d));
       s.g.position.copy(s.M); s.g.lookAt(s.C); s.q = s.g.quaternion.clone();
       const tw = narrow ? s.w * 1.25 : s.w * 1.7;
