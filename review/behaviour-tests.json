@@ -1,0 +1,187 @@
+[
+ {
+  "name": "lite: no three/take/mp4 requests",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "lite: all 19 sections visible in flow",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "lite: every text element displayed",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "lite: work index jumps to section",
+  "pass": true,
+  "info": "#mawjat"
+ },
+ {
+  "name": "switch lite→cine keeps section",
+  "pass": true,
+  "info": "u=7"
+ },
+ {
+  "name": "choice saved locally",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "no page errors (A)",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "opening: no optional video before interaction",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "opening: name+lead+actions visible",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "work index opens sheet",
+  "pass": true,
+  "info": "#mawjat"
+ },
+ {
+  "name": "sheet = one history entry",
+  "pass": true,
+  "info": "2->3"
+ },
+ {
+  "name": "sheet has role + original links",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "Back closes sheet, stays in context",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "focus returns to sheet button",
+  "pass": true,
+  "info": "<button type=\"button\" class=\"btn\" data-do=\"sheet\"><i class=\"dot\"></i>افتح الورقة"
+ },
+ {
+  "name": "Enter opens, Escape closes, history balanced",
+  "pass": true,
+  "info": "null"
+ },
+ {
+  "name": "focus after Escape",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "ArrowDown → next scene",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "scroll adds no history entries",
+  "pass": true,
+  "info": "3->3 #taabeer"
+ },
+ {
+  "name": "texture cache bounded to near scenes",
+  "pass": true,
+  "info": "cached=20 gpuTex=55"
+ },
+ {
+  "name": "after long travel cache stays small",
+  "pass": true,
+  "info": "cached=16 gpuTex=55"
+ },
+ {
+  "name": "showreel never auto-loaded",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "tab hidden: render loop stopped",
+  "pass": true,
+  "info": "videos alive before=3"
+ },
+ {
+  "name": "tab hidden: no frames drawn",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "tab visible: loop resumes",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "switch cine→lite lands on same section",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "lite after switch: normal scrolling works",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "no page errors (B)",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "context lost → lite at same section",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "context lost: scroll + keys not blocked",
+  "pass": true,
+  "info": "1287"
+ },
+ {
+  "name": "no page errors (C)",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "reduced motion (no stored choice) → lite, no 3D requests",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "reduced motion in cine: loop stops when settled",
+  "pass": true,
+  "info": "{\"u\":3,\"f\":10,\"q\":2,\"cached\":9,\"run\":false,\"vid\":0,\"tex\":24}"
+ },
+ {
+  "name": "reduced motion: scenes cut (integer u), no video",
+  "pass": true,
+  "info": "u=4"
+ },
+ {
+  "name": "save-data → lite by default",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "image failure in cine: scene alive, text + sheet button present",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "image failure in lite: figure collapses, content stays",
+  "pass": true,
+  "info": ""
+ },
+ {
+  "name": "no WebGL → lite even if cinematic requested",
+  "pass": true,
+  "info": ""
+ }
+]

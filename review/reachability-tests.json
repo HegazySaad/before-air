@@ -1,0 +1,30 @@
+{
+ "landscape-844x390": {
+  "sections": 19,
+  "bad": [],
+  "smallTargets": [],
+  "headerOverlap": false,
+  "errs": []
+ },
+ "zoom200-720x450": {
+  "sections": 19,
+  "bad": [],
+  "smallTargets": [],
+  "headerOverlap": false,
+  "errs": []
+ },
+ "phone-360x740": {
+  "sections": 19,
+  "bad": [],
+  "smallTargets": [],
+  "headerOverlap": false,
+  "errs": []
+ },
+ "zoom200-phone-195x422": {
+  "sections": 19,
+  "bad": [],
+  "smallTargets": [],
+  "headerOverlap": true,
+  "errs": []
+ }
+}
