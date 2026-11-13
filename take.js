@@ -50,7 +50,7 @@ export async function start(ui) {
     while (inflight < 3 && queue.length) {
       const e = queue.shift(); if (e.dead) { e.res(null); continue; }
       inflight++;
-      loader.load(e.url, t => { inflight--; if (e.dead || !alive) { t.dispose(); e.res(null); } else { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = HIGH ? 4 : 2; e.tex = t; e.res(t); wake(); } pump(); },
+      loader.load(e.url, t => { inflight--; if (e.dead || !alive) { t.dispose(); e.res(null); } else { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy()); e.tex = t; e.res(t); wake(); } pump(); },
         undefined, () => { inflight--; e.res(null); pump(); });
     }
   }
@@ -161,11 +161,11 @@ vCol=c;vA=a*smoothstep(.3,1.6,-mv.z)*(1.-smoothstep(46.,70.,-mv.z));}`,
   const VS = 'varying vec2 vUv;varying float vD;void main(){vUv=uv;vec4 m=modelViewMatrix*vec4(position,1.);vD=-m.z;gl_Position=projectionMatrix*m;}';
   const FS = `uniform sampler2D map;uniform float uOn,uAsp,uBoost,uHover,uTime;uniform vec2 uRep,uOff,uFog;uniform vec3 uBg;varying vec2 vUv;varying float vD;
 void main(){vec2 h=vec2(uAsp,1.)*.5;vec2 p=(vUv-.5)*vec2(uAsp,1.);float r=length(max(abs(p)-h+.04,0.))-.04;if(r>0.)discard;
-vec2 uv=vUv*uRep+uOff;float ca=.001+(1.-uOn)*.006;
+vec2 uv=vUv*uRep+uOff;float ca=(1.-uOn)*.005;
 vec3 t=vec3(texture2D(map,uv+vec2(ca,0.)).r,texture2D(map,uv).g,texture2D(map,uv-vec2(ca,0.)).b);
-float scan=1.-.025*sin(vUv.y*480.+uTime*2.);
+float scan=1.-.008*sin(vUv.y*480.+uTime*2.);
 vec3 c=mix(t*.08,t*scan*uBoost*(1.+.15*uHover),smoothstep(0.,1.,uOn));
-c*=1.-.12*smoothstep(.4,.8,length(vUv-.5));
+c*=1.-.05*smoothstep(.45,.8,length(vUv-.5));
 float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
 #include <colorspace_fragment>
 }`;
@@ -300,7 +300,7 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
   const REPORTS = ['أيقونات', 'أكلة الأسبوع', 'نادي السينما', 'غرائب', 'بالأرقام', 'كل يوم سؤال', 'ترانا بنظهر أقوى'];
   const st = shots.map((el, i) => ({ el, i, kind: el.dataset.kind, mood: el.dataset.mood || '', k: 0, mats: [], sats: [], hits: [], needs: [], loaded: false, M: V(0, 0, 0), C: V(0, 0, 0), T: V(0, 0, 0) }));
   const progs = st.filter(s => s.i > AIR && s.i < POST && s.mood);
-  const pic = el => (narrow && !HIGH && el.dataset.imgm) || el.dataset.img;   // الموبايل بياخد نسخة 640 من نفس الصورة     // ترتيب الحلقة: البرامج التسعة بعد حيطة الكنترول
+  const pic = el => (ui.save && el.dataset.imgm) || el.dataset.img;   // الموبايل بياخد نسخة 640 من نفس الصورة     // ترتيب الحلقة: البرامج التسعة بعد حيطة الكنترول
 
   for (const s of st) {
     const { el, kind } = s;
@@ -312,7 +312,7 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
     s.g = new THREE.Group(); s.pivot = new THREE.Group(); s.g.add(s.pivot); scene.add(s.g);
     const body = new THREE.Mesh(box, bodyM); body.scale.set(s.w + .14, s.h + .14, .2); body.position.z = -.11; s.pivot.add(body); s.body = body;
     if (kind === 'control' || kind === 'wall') {
-      const list = kind === 'wall' ? el.dataset.wall.split(',') : progs.map(p => p.el.dataset.imgm || p.el.dataset.img);
+      const list = kind === 'wall' ? el.dataset.wall.split(',') : progs.map(p => p.el.dataset.imgm || p.el.dataset.img);   // بلاطات صغيرة: نسخة 640 كفاية
       const tw = (s.w - .12) / 3, th = (s.h - .12) / 3;
       list.forEach((src, k) => {
         const m = screenMat(tw / th), t = new THREE.Mesh(plane, m);
@@ -394,13 +394,13 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
     vertexShader: 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
     fragmentShader: `uniform sampler2D tDiffuse;uniform float uTime,uVel,uGrain,uCut;varying vec2 vUv;
 float h(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233))+uTime*7.)*43758.5453);}
-void main(){vec2 d=vUv-.5;float r=length(d);float ca=(.0014+uVel*.016)*r*2.;
+void main(){vec2 d=vUv-.5;float r=length(d);float ca=(.0003+uVel*.012)*r*2.;
 vec3 c=vec3(0.);for(int i=0;i<4;i++){float s=1.-float(i)*uVel*.03;vec2 u=.5+d*s;c+=vec3(texture2D(tDiffuse,u+d*ca).r,texture2D(tDiffuse,u).g,texture2D(tDiffuse,u-d*ca).b);}
 c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.xy)-.5)*uGrain*(.15+smoothstep(0.,.4,dot(c,vec3(.33))));gl_FragColor=vec4(max(c,0.),1.);}`,
   });
   composer.addPass(fin); composer.addPass(new OutputPass());
   // ميزانية بكسلات لكل درجة: الدقة بتتحسب من مساحة الشاشة مش من رقم ثابت
-  const PIX = [3.4e6, 2.1e6, 1.4e6, 1.0e6, .8e6], CAP = [2, 1.5, 1.5, 1.25, 1];
+  const PIX = [3.4e6, 2.1e6, 1.4e6, 1.0e6, .8e6], CAP = [2, 2, 1.6, 1.25, 1];
   let rtQ = quality;
   function applyQuality() {
     if ((rtQ < 2) !== (quality < 2) || (rtQ === 0) !== (quality === 0)) { composer.reset(mkRT()); }
@@ -415,6 +415,7 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.
   function layout() {
     narrow = mqNarrow.matches;
     const W = innerWidth, H = innerHeight, asp = W / H, side = mqSide.matches;
+    const wide = !side && !mqNarrow.matches && asp >= 1.45 && W >= 1000; root.classList.toggle('wide', wide);
     const dpr = Math.max(.75, Math.min(devicePixelRatio || 1, CAP[quality], Math.sqrt(PIX[quality] / (W * H))));
     renderer.setPixelRatio(dpr); renderer.setSize(W, H, false); composer.setPixelRatio(dpr); composer.setSize(W, H);
     camera.aspect = asp; camera.updateProjectionMatrix();
@@ -430,6 +431,10 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.
       const ff = areaH * .96 / H, wf = side ? .45 : narrow ? .96 : roomy ? .9 : .66;
       s.dd = Math.max(s.h / (ff * VIS), s.w / (wf * VIS * asp)); s.off = .5 - (topY + botY) / 2 / H;
       s.offX = side ? .245 : narrow ? 0 : roomy ? .17 : s.g ? .03 : 0;
+      if (wide && !roomy && s.kind !== 'me') {
+        const padX = parseFloat(getComputedStyle(s.el).paddingLeft) || 40, x0 = padX * .6, x1 = W - padX - capEl.offsetWidth - 36, t2 = bar + 10, b2 = H - 34;
+        s.dd = Math.max(s.h / ((b2 - t2) * .9 / H * VIS), s.w / ((x1 - x0) / W * .97 * VIS * asp)); s.off = .5 - (t2 + b2) / 2 / H; s.offX = .5 - (x0 + x1) / 2 / W;
+      }
       if (roomy && !side) { s.dd = Math.max(s.h / (.74 * VIS), s.w / ((narrow ? 1.05 : .62) * VIS * asp)); s.off = narrow ? .17 : .11; }
       if (s.kind === 'room') s.M.set(0, 1.7, -.5);
       else if (s.kind === 'me') s.M.copy(ORG);

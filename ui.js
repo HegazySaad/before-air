@@ -48,6 +48,19 @@ $('#share').addEventListener('click', () => {
   (navigator.clipboard?.writeText(url) || Promise.reject()).then(() => toast('اتنسخ لينك البرنامج'), () => toast(url));
 });
 
+/* ---------- التترات بتطلع لوحدها في مشهدها (والقايمة الكاملة لسه في الورقة) ---------- */
+{
+  const cr = $('#credits'), src = cr && $('.sheet', cr), goP = cr && $('.cap .go', cr);
+  if (src && goP) {
+    const box = document.createElement('div'); box.className = 'autoroll'; box.setAttribute('aria-hidden', 'true');
+    box.innerHTML = '<div>' + src.innerHTML + '</div>'; goP.before(box);
+    const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn ghost'; btn.dataset.do = 'roll'; btn.innerHTML = '<i class="dot"></i>وقّف التترات'; goP.append(btn);
+    const fit = () => { const h = box.firstChild.offsetHeight, bh = box.offsetHeight || 300; box.style.setProperty('--from', bh + 'px'); box.style.setProperty('--roll', Math.max(20, Math.round((h + bh) / 34)) + 's'); };
+    new ResizeObserver(fit).observe(box);
+    btn.addEventListener('click', () => { const p = box.classList.toggle('paused'); btn.lastChild.textContent = p ? 'كمّل التترات' : 'وقّف التترات'; btn.setAttribute('aria-pressed', String(p)); });
+  }
+}
+
 /* ---------- التنقل ---------- */
 let scene = null;                                             // المشهد الشغال (لو فيه)
 function current() {                                          // القسم اللي قدام القارئ دلوقتي

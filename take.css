@@ -86,7 +86,7 @@ h3{font-weight:500;font-size:1.125rem;margin-block:36px 6px}
 .lnk{display:flex;align-items:center;gap:16px;padding:8px;margin-inline:-8px;border-radius:8px;text-decoration:none;transition:background .25s,transform .3s var(--ease)}
 .lnk:hover{background:rgba(127,120,108,.2);transform:translateX(-4px)}
 .lnk:active{transform:none}
-.th,.ph{flex:none;width:96px;height:54px;border-radius:5px;object-fit:cover;background:#26221e;color:var(--ink)}
+.th,.ph{flex:none;width:144px;height:81px;border-radius:5px;object-fit:cover;background:#26221e;color:var(--ink)}
 .ph{display:grid;place-items:center}
 .txt{display:grid;line-height:1.55}
 .txt b{font-weight:500;font-size:1.05rem}
@@ -106,7 +106,7 @@ main{padding-block-start:var(--bar)}
 .pic img{display:block;width:100%;height:auto;border-radius:8px;margin-block-end:24px}
 .shot[data-kind="me"] .pic img,.shot[data-kind="end"] .pic img{max-width:300px}
 .sheet{margin-block-start:22px;color:var(--soft)}
-html:not(.gl) [data-do=sheet],html:not(.gl) .in-cap,html:not(.gl) .hint:empty{display:none}
+html:not(.gl) [data-do=sheet],html:not(.gl) [data-do=roll],html:not(.gl) .in-cap,html:not(.gl) .hint:empty{display:none}
 .note{margin-block-start:18px;max-width:22rem;color:var(--dim);font-size:1rem}
 .note b{display:block;font-weight:500;font-size:.85rem;color:var(--red)}
 .year,.bars,#tip,.cuebar{display:none}
@@ -228,7 +228,8 @@ dialog h2{font-size:2rem;margin:0}
   .state .tc{display:none}
   .gl .k-room h1{font-size:clamp(2.8rem,13vw,4rem)}
   #runDlg ol{columns:1}
-  .th,.ph{width:80px;height:45px}
+  .th,.ph{width:116px;height:65px}
+  .cap p{font-size:1.08rem}
 }
 
 @media (max-height:720px) and (min-width:821px){
@@ -328,6 +329,30 @@ html:not(.gl) body{padding-block-end:env(safe-area-inset-bottom,0px)}
   .gl .cap > *,.gl .on .cap > *,.gl .note,.gl .on .note{transform:none;translate:0 0;filter:none;transition:opacity .2s}
   #sheetDlg,.bars::before,.bars::after,.btn,.lnk,.cue,.hb,#toast{transition:none}
 }
+
+/* ---- تخطيط عريض: الصورة كبيرة على الشمال والكلام عمود على اليمين ---- */
+.gl.wide .shot:not(.k-room):not(.k-end):not(.k-me){align-items:center}
+.gl.wide .shot:not(.k-room):not(.k-end):not(.k-me) .cap{width:min(30rem,34vw);max-width:none;max-height:calc(100dvh - var(--bar) - 110px)}
+.gl.wide .cap .note{position:static;rotate:-1.5deg;max-width:18rem;margin-block-start:18px}
+.gl.wide .year{inset-block-end:auto;inset-block-start:calc(var(--bar) + 6px);inset-inline:auto;left:var(--pad)}
+.gl.wide .year b{font-size:1.6rem}
+.gl.wide:not([data-kind=room]):not([data-kind=end]):not([data-kind=me]) body::after{inset:0;height:auto;background:linear-gradient(to left,rgba(6,5,5,.96) 0,rgba(6,5,5,.94) 37%,rgba(6,5,5,0) 50%)}
+.cap .lead{text-shadow:0 1px 14px rgba(0,0,0,.6)}
+
+/* ---- التترات بتطلع لوحدها ---- */
+.autoroll{display:none}
+.gl .autoroll{display:block;position:relative;height:min(38vh,360px);margin-block:14px 4px;overflow:hidden;mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 84%,transparent 100%)}
+.autoroll > div{animation:roll var(--roll,60s) linear infinite;animation-play-state:paused}
+.gl .on .autoroll > div{animation-play-state:running}
+.gl .autoroll.paused > div{animation-play-state:paused}
+.autoroll h3{margin-block:26px 4px;color:var(--red);font-size:1rem}
+.autoroll .roll li{padding-block:8px}
+.autoroll .roll b{font:700 1.5rem/1.4 "Aref Ruqaa",serif;color:var(--ink)}
+.autoroll .roll span{color:var(--soft)}
+.autoroll .roll small{color:var(--dim)}
+@keyframes roll{from{transform:translateY(var(--from,300px))}to{transform:translateY(-100%)}}
+@media (max-width:820px),(max-aspect-ratio:9/10){.gl .autoroll{height:30vh}}
+@media (prefers-reduced-motion:reduce){.gl .autoroll{overflow-y:auto;mask-image:none;pointer-events:auto}.autoroll > div{transform:none !important}}
 
 /* تباين الأحمر فوق الورق (AA): درجة أغمق من نفس اللون */
 .paper .role b,.paper .cut,.gl .note b{color:#b8231a}
