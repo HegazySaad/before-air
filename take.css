@@ -327,3 +327,6 @@ html:not(.gl) body{padding-block-end:env(safe-area-inset-bottom,0px)}
   .gl .cap > *,.gl .on .cap > *,.gl .note,.gl .on .note{transform:none;translate:0 0;filter:none;transition:opacity .2s}
   #sheetDlg,.bars::before,.bars::after,.btn,.lnk,.cue,.hb,#toast{transition:none}
 }
+
+/* تباين الأحمر فوق الورق (AA): درجة أغمق من نفس اللون */
+.paper .role b,.paper .cut,.gl .note b{color:#b8231a}
