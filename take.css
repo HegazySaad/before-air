@@ -315,8 +315,9 @@ html:not(.gl) body{padding-block-end:env(safe-area-inset-bottom,0px)}
 
 /* شاشة ضيقة جدا (تكبير 200% على موبايل): الشريط بيبقى سطرين بدل ما الأزرار تركب على بعض */
 @media (max-width:330px){
-  :root{--bar:104px}
-  .bar{flex-wrap:wrap;align-content:center;gap:4px 8px;padding-inline:10px}
+  :root{--bar:152px}
+  .bar{flex-wrap:wrap;align-content:center;height:auto;min-height:var(--bar);gap:4px 8px;padding:4px 10px}
+  .cue #cueTxt{display:none}
   .name{flex-basis:100%;min-height:44px}
   .bar .hb:first-of-type{margin-inline-start:0}
   .state{display:none}
