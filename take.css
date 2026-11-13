@@ -93,6 +93,10 @@ h3{font-weight:500;font-size:1.125rem;margin-block:36px 6px}
 .txt{display:grid;line-height:1.55}
 .txt b{font-weight:500;font-size:1.05rem}
 .txt span{font-size:.95rem;opacity:.72}
+.qs{margin-block:10px 4px;display:grid;gap:10px;padding-inline-start:18px;list-style:'– ' outside}
+.qs li{padding-inline-start:4px;line-height:1.8}
+.dir{font-style:normal;opacity:.7;font-size:1rem}
+.cut{margin-block:22px !important;text-align:center;font-weight:500;color:var(--red)}
 .roll li{display:grid;padding-block:10px;line-height:1.6}
 .roll b{font-weight:500}
 .roll span{font-size:1rem}

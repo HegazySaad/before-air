@@ -94,12 +94,12 @@ async function start() {
     out.push(line); return out;
   }
   // صفحة السكريبت: هي ضهر كل شاشة.. بتتقلب وتبقى صورة
-  function paperTex(head, body, asp) {
+  function paperTex(head, body, asp, raw) {
     const W = 1024, H = Math.round(W / asp), c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
     x.fillStyle = '#e9e1d2'; x.fillRect(0, 0, W, H);
     x.fillStyle = '#ff3b2f'; x.beginPath(); x.arc(W - 70, 74, 13, 0, 7); x.fill();
     x.direction = 'rtl'; x.textAlign = 'right'; x.fillStyle = '#6f675b'; x.font = '500 30px "Readex Pro",sans-serif';
-    x.fillText('مشهد · ' + head, W - 104, 85);
+    x.fillText(raw ? head : 'مشهد · ' + head, W - 104, 85);
     x.fillStyle = '#1d1a16'; let size = 68; x.font = `700 ${size}px "Aref Ruqaa",serif`;
     let lines = wrap(x, body, W - 150);
     while (lines.length * size * 1.5 > H - 250 && size > 34) { size -= 6; x.font = `700 ${size}px "Aref Ruqaa",serif`; lines = wrap(x, body, W - 150); }
@@ -288,7 +288,7 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
   const REPORTS = ['أيقونات', 'أكلة الأسبوع', 'نادي السينما', 'غرائب', 'بالأرقام', 'كل يوم سؤال', 'ترانا بنظهر أقوى'];
   const first = [];
   const st = shots.map((el, i) => ({ el, i, kind: el.dataset.kind, mood: el.dataset.mood || '', k: 0, mats: [], sats: [], hits: [], M: V(0, 0, 0), C: V(0, 0, 0), T: V(0, 0, 0) }));
-  const progs = st.filter(s => s.i > AIR && s.i < POST);     // ترتيب الحلقة: البرامج التسعة بعد حيطة الكنترول
+  const progs = st.filter(s => s.i > AIR && s.i < POST && s.mood);     // ترتيب الحلقة: البرامج التسعة بعد حيطة الكنترول
 
   for (const s of st) {
     const { el, kind } = s;
@@ -314,7 +314,7 @@ float f=smoothstep(uFog.x,uFog.y,vD);gl_FragColor=vec4(mix(c,uBg,f),1.);
       s.scr = new THREE.Mesh(plane, s.m); s.scr.scale.set(s.w, s.h, 1); s.pivot.add(s.scr);
       const p = loadTex(el.dataset.img).then(x => setTex(s.m, x)); if (s.i < 5) first.push(p);
       // ضهر الشاشة: صفحة السكريبت
-      const pm = new THREE.MeshBasicMaterial({ map: paperTex(el.dataset.name, el.dataset.paper || el.dataset.name, s.w / s.h), color: 0xc9c1b2 });
+      const pm = new THREE.MeshBasicMaterial({ map: paperTex(el.dataset.paperhead || el.dataset.name, el.dataset.paper || el.dataset.name, s.w / s.h, !!el.dataset.paperhead), color: 0xc9c1b2 });
       const paper = new THREE.Mesh(plane, pm); paper.scale.set(s.w + .14, s.h + .14, 1); paper.position.z = -.215; paper.rotation.y = Math.PI; s.pivot.add(paper);
       const hasSheet = !!$('.sheet', el);
       s.hits.push({ mesh: s.scr, tip: hasSheet ? 'افتح الورقة' : '', act: hasSheet ? () => openSheet(s.i) : null, m: s.m });
@@ -549,7 +549,9 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.
       if (!vis) continue;
       const k = smooth(1 - clamp(near / .9)); s.k = k;
       // التوقيع: الورقة بتتقلب وتبقى شاشة
-      const flip = s.scr ? smooth(clamp((k - .18) / .55)) : 1;
+      // في مشهد السكريبت الحقيقي: الورقة بتفضل قدامك تتقري، وبتتقلب مع السكرول
+      const hold = s.el.dataset.flip === 'scrub' ? smooth(clamp(((v - (s.i - .36)) / .72 - .45) / .3)) : 1;
+      const flip = s.scr ? smooth(clamp((k - .18) / .55)) * hold : 1;
       s.pivot.rotation.y = calm ? 0 : (1 - flip) * Math.PI * (s.i % 2 ? 1 : -1);
       const on = s.scr ? smooth(clamp((flip - .45) / .5)) : smooth(clamp((k - .03) / .4));
       s.mats.forEach((m, j) => { m.uniforms.uOn.value = s.scr ? on : smooth(clamp((k - .05 - j * .05) / .4)); });

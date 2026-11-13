@@ -34,6 +34,24 @@ def sheet(c):
         cr = ''.join(f'<li><b>{E(x["title"])}</b><span>{E(x["role"])}</span><small>{E(x["detail"])}</small></li>' for x in D['credits'])
         bf = ''.join(f'<li><b>{E(x["place"])}</b><span>{E(x["role"])}</span><small>{E(x["when"])}</small></li>' for x in D['before'])
         return f'    <h3>على الشاشة</h3>\n    <ul class="roll">{cr}</ul>\n    <h3>قبل التلفزيون</h3>\n    <ul class="roll">{bf}</ul>'
+    if c.get('type') == 'script':
+        out = []
+        for s in c['script']:
+            out.append(f'    <h3>{E(s["h"])}</h3>')
+            out += [f'    <p>{E(x)}</p>' for x in s.get('lines', []) if not s.get('q') or s is c['script'][0]] if not s.get('q') else []
+            if s.get('q'):
+                pre = [x for x in s.get('lines', []) if s['h'].startswith(('Gear 2', 'Gear 3', 'السباق'))]
+                out += [f'    <p>{E(x)}</p>' for x in pre]
+                out += [f'    <p class="dir">{E(x)}</p>' for x in s.get('dir', [])]
+                out += [f'    <p>{E(x)}</p>' for x in s.get('after', [])]
+                out.append('    <ul class="qs">' + ''.join(f'<li>{E(q)}</li>' for q in s['q']) + '</ul>')
+                if s['h'] == 'Gear 1':
+                    out += [f'    <p>{E(x)}</p>' for x in s.get('lines', [])]
+                out += [f'    <p class="dir">{E(x)}</p>' for x in s.get('after2', [])]
+            if s.get('cut'):
+                out.append(f'    <p class="cut">{E(s["cut"])}</p>')
+        out.append('    <p class="fine">النص منقول من ورقة الحلقة زي ما هو.</p>')
+        return '\n'.join(out)
     return ''
 
 
@@ -59,6 +77,10 @@ def chapter(c):
     if c.get('contact'):
         cap.append(f'    <p class="fine">{E(SITE["footer"])} · <a href="v3.html">النسخة اللي فاتت</a></p>')
     attrs = {'data-name': c['nav'], 'data-kind': c['kind']}
+    if c.get('flipScrub'):
+        attrs['data-flip'] = 'scrub'
+    if c.get('paperHead'):
+        attrs['data-paperhead'] = c['paperHead']
     for k in ('img', 'year', 'mood', 'tint', 'paper'):
         if c.get(k):
             attrs[f'data-{k}'] = c[k]
