@@ -1,0 +1,290 @@
+{
+ "before": {
+  "360x740": {
+   "requests": 72,
+   "raw_kB": 3574,
+   "gzip_text_kB": 2964,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "390x844": {
+   "requests": 72,
+   "raw_kB": 3574,
+   "gzip_text_kB": 2964,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "430x932": {
+   "requests": 72,
+   "raw_kB": 3574,
+   "gzip_text_kB": 2964,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "768x1024": {
+   "requests": 72,
+   "raw_kB": 3574,
+   "gzip_text_kB": 2964,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1024x768": {
+   "requests": 72,
+   "raw_kB": 3574,
+   "gzip_text_kB": 2964,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1440x900": {
+   "requests": 72,
+   "raw_kB": 3574,
+   "gzip_text_kB": 2964,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "844x390": {
+   "requests": 72,
+   "raw_kB": 3574,
+   "gzip_text_kB": 2964,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  }
+ },
+ "after-cine": {
+  "360x740": {
+   "requests": 27,
+   "raw_kB": 1200,
+   "gzip_text_kB": 571,
+   "video": [],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "390x844": {
+   "requests": 27,
+   "raw_kB": 1200,
+   "gzip_text_kB": 571,
+   "video": [],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "430x932": {
+   "requests": 27,
+   "raw_kB": 1200,
+   "gzip_text_kB": 571,
+   "video": [],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "768x1024": {
+   "requests": 27,
+   "raw_kB": 1200,
+   "gzip_text_kB": 571,
+   "video": [],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1024x768": {
+   "requests": 27,
+   "raw_kB": 1200,
+   "gzip_text_kB": 571,
+   "video": [],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1440x900": {
+   "requests": 27,
+   "raw_kB": 1200,
+   "gzip_text_kB": 571,
+   "video": [],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "844x390": {
+   "requests": 27,
+   "raw_kB": 1200,
+   "gzip_text_kB": 571,
+   "video": [],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  }
+ },
+ "after-lite": {
+  "360x740": {
+   "requests": 15,
+   "raw_kB": 347,
+   "gzip_text_kB": 281,
+   "video": [],
+   "three_js": false,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "390x844": {
+   "requests": 15,
+   "raw_kB": 347,
+   "gzip_text_kB": 281,
+   "video": [],
+   "three_js": false,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "430x932": {
+   "requests": 15,
+   "raw_kB": 347,
+   "gzip_text_kB": 281,
+   "video": [],
+   "three_js": false,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "768x1024": {
+   "requests": 14,
+   "raw_kB": 591,
+   "gzip_text_kB": 525,
+   "video": [],
+   "three_js": false,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1024x768": {
+   "requests": 14,
+   "raw_kB": 591,
+   "gzip_text_kB": 525,
+   "video": [],
+   "three_js": false,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1440x900": {
+   "requests": 15,
+   "raw_kB": 627,
+   "gzip_text_kB": 561,
+   "video": [],
+   "three_js": false,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "844x390": {
+   "requests": 14,
+   "raw_kB": 591,
+   "gzip_text_kB": 525,
+   "video": [],
+   "three_js": false,
+   "console_errors": 0,
+   "h_scroll": false
+  }
+ },
+ "codex": {
+  "360x740": {
+   "requests": 32,
+   "raw_kB": 1693,
+   "gzip_text_kB": 1060,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "390x844": {
+   "requests": 32,
+   "raw_kB": 1693,
+   "gzip_text_kB": 1060,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "430x932": {
+   "requests": 32,
+   "raw_kB": 1693,
+   "gzip_text_kB": 1060,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "768x1024": {
+   "requests": 31,
+   "raw_kB": 1656,
+   "gzip_text_kB": 1024,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1024x768": {
+   "requests": 32,
+   "raw_kB": 1693,
+   "gzip_text_kB": 1060,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "1440x900": {
+   "requests": 32,
+   "raw_kB": 1693,
+   "gzip_text_kB": 1060,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  },
+  "844x390": {
+   "requests": 32,
+   "raw_kB": 1693,
+   "gzip_text_kB": 1060,
+   "video": [
+    "/vid/crane.mp4"
+   ],
+   "three_js": true,
+   "console_errors": 0,
+   "h_scroll": false
+  }
+ }
+}

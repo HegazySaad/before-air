@@ -523,7 +523,7 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.
   canvas.addEventListener('click', e => { setNdc(e); wake(); const h = pick(); if (!h) return; if (h.act) h.act(); else if (h.tip) toast(h.tip); }, sig);
 
   /* ---------- الحلقة ---------- */
-  const P = V(0, 0, 0), T = V(0, 0, 0), perf = { t: 0, n: 0, slow: 0, dead: 0, skip: 40 }, lampC = new THREE.Color(0xffd9a0);
+  const P = V(0, 0, 0), T = V(0, 0, 0), perf = { t: 0, n: 0, slow: 0, dead: 0, skip: 700 }, lampC = new THREE.Color(0xffd9a0);
   let u = 0, time = 0, endT = 0, lampK = 1, frameN = 0, lastDraw = 0, calmWas = null;
   function frame(now) {
     if (!running || !alive) return;
@@ -534,7 +534,7 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.
     if (!moving && !vidsOn && (calm || now - wakeT > 40000)) { running = false; return; }
     requestAnimationFrame(frame);
     if (!moving && now - lastDraw < (vidsOn ? 31 : 40)) return;
-    const dt = Math.min(250, now - last); last = lastDraw = now; frameN++;
+    const raw = now - last, dt = Math.min(250, raw); last = lastDraw = now; frameN++;
     if (!calm) time += dt / 1000; uTime.value = time;
     u = calm ? target : u + (target - u) * (1 - Math.exp(-dt / 1000 * 4.2));
     if (Math.abs(target - u) < .0004) u = target;
@@ -615,14 +615,14 @@ c*=.25;c*=1.-smoothstep(.4,.98,r)*.6;c+=vec3(1.,.86,.7)*uCut;c+=(h(gl_FragCoord.
     const r0 = performance.now();
     composer.render();
     // جودة استباقية: بنقيس الإطارات المتتالية وقت الحركة بس، وبننزل درجة لو متوسط نافذتين ورا بعض عدى 24ms (أقل من ~42 إطار)
-    if (adaptive && moving && dt < 200) {
-      if (perf.skip > 0) perf.skip--;
+    if (adaptive && moving && raw < 1200) {                    // الإطارات البطيئة جوه القياس.. المستبعد بس وقفات التبويب
+      if (perf.skip > 0) perf.skip -= raw;
       else {
-        perf.t += Math.max(dt, performance.now() - r0); perf.n++;
-        if (perf.n >= 40) {
+        perf.t += Math.max(raw, performance.now() - r0); perf.n++;
+        if (perf.n >= 40 || (perf.t > 1500 && perf.n >= 5)) {      // نافذة 40 إطار أو ثانية ونص.. أيهما أقرب
           const avg = perf.t / perf.n; perf.t = perf.n = 0; stats.avg = avg;
           perf.slow = avg > 24 ? perf.slow + 1 : 0;
-          if (perf.slow >= 2 && quality < 4) { quality++; perf.slow = 0; perf.skip = 30; applyQuality(); }
+          if (perf.slow >= 2 && quality < 4) { quality++; perf.slow = 0; perf.skip = 500; applyQuality(); }
           else if (quality === 4) { perf.dead = avg > 40 ? perf.dead + 1 : 0; if (perf.dead >= 3) { ui.fail(clamp(Math.round(u), 0, N - 1), 'الجهاز تقيل على المشهد.. كمل بالقراءة الخفيفة.'); return; } }
         }
       }
