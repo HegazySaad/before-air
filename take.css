@@ -29,31 +29,29 @@ ul,ol{list-style:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
 .skip{position:fixed;inset-block-start:-80px;inset-inline-start:16px;z-index:60;background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:6px;text-decoration:none}
-.skip:focus{inset-block-start:12px}
+.skip:focus,.skip:focus-visible{inset-block-start:12px}
+.skip.two{font:inherit;cursor:pointer}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--idle);flex:none;transition:background .4s}
 
 #stage{position:fixed;inset:0;width:100%;height:100%;display:none}
 #track{display:none}
-#loader{display:none}
-.boot #loader{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;gap:14px;background:var(--bg)}
-.boot #loader .dot{background:var(--red);animation:tally 1s steps(2,jump-none) infinite}
-#loader b{font:700 2rem/1 "Aref Ruqaa",serif}
-#loader span{font-weight:500;font-variant-numeric:tabular-nums;color:var(--dim);min-width:2ch}
-.boot body{overflow:hidden}
 @keyframes tally{50%{opacity:.3}}
+
 
 /* ---- شريط التحكم ---- */
 .bar{position:fixed;inset-block-start:0;inset-inline:0;z-index:20;height:var(--bar);display:flex;align-items:center;gap:20px;padding-inline:max(var(--pad),env(safe-area-inset-left,0px)) max(var(--pad),env(safe-area-inset-right,0px));background:var(--bg)}
 .gl .bar{background:linear-gradient(to bottom,rgba(6,5,5,.88),rgba(6,5,5,.5) 60%,rgba(6,5,5,0))}
 .hb,.name{white-space:nowrap}
-.name{font:700 1.75rem/1 "Aref Ruqaa",serif;text-decoration:none;padding-block:8px}
+.name{display:inline-flex;align-items:center;min-height:44px;font:700 1.75rem/1 "Aref Ruqaa",serif;text-decoration:none;padding-block:8px}
 .state{display:flex;align-items:center;gap:10px;margin-inline-start:auto;font-weight:400;font-size:1rem;color:var(--dim)}
-.tc{font-variant-numeric:tabular-nums;font-weight:500;color:var(--ink);min-width:6.6em;text-align:end;padding:6px 0;cursor:pointer}
+.tc{font-variant-numeric:tabular-nums;font-weight:500;color:var(--ink);min-width:6.6em;min-height:44px;text-align:end;padding:6px 0;cursor:pointer}
+html:not(.gl) .state{display:none}
+html:not(.gl) .bar .hb:first-of-type{margin-inline-start:auto}
 .tc.stby{color:#43d68e}
 [data-act="air"] .state{color:var(--ink)}
 [data-act="air"] .state .dot,[data-act="air"] .cue .dot{background:var(--red)}
 [data-act="air"] .state .dot{animation:tally 1.6s steps(2,jump-none) infinite}
-.hb{font-weight:400;font-size:1rem;padding:8px 14px;border-radius:6px;background:var(--lift);transition:background .25s}
+.hb{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:400;font-size:1rem;padding:8px 14px;border-radius:6px;background:var(--lift);transition:background .25s}
 .hb:hover{background:#2a2521}
 .hb:active{transform:translateY(1px)}
 .bar .hb + .hb{margin-inline-start:-8px}
@@ -108,7 +106,7 @@ main{padding-block-start:var(--bar)}
 .pic img{display:block;width:100%;height:auto;border-radius:8px;margin-block-end:24px}
 .shot[data-kind="me"] .pic img,.shot[data-kind="end"] .pic img{max-width:300px}
 .sheet{margin-block-start:22px;color:var(--soft)}
-html:not(.gl) [data-do=sheet]{display:none}
+html:not(.gl) [data-do=sheet],html:not(.gl) .in-cap,html:not(.gl) .hint:empty{display:none}
 .note{margin-block-start:18px;max-width:22rem;color:var(--dim);font-size:1rem}
 .note b{display:block;font-weight:500;font-size:.85rem;color:var(--red)}
 .year,.bars,#tip,.cuebar{display:none}
@@ -118,10 +116,11 @@ html:not(.gl) [data-do=sheet]{display:none}
 .gl #track{display:block}
 .gl main{padding:0}
 .gl body::after{content:"";position:fixed;inset-inline:0;inset-block-end:0;height:62vh;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,5,5,.94) 8%,rgba(6,5,5,.6) 45%,rgba(6,5,5,0))}
-.gl .shot{position:fixed;inset:0;z-index:5;max-width:none;margin:0;display:flex;align-items:flex-end;padding:0 var(--pad) clamp(92px,13vh,132px);pointer-events:none;visibility:hidden;transition:visibility 0s .5s}
+.gl .shot{position:fixed;inset:0;z-index:5;content-visibility:visible;max-width:none;margin:0;display:flex;align-items:flex-end;padding:0 var(--pad) clamp(92px,13vh,132px);pointer-events:none;visibility:hidden;transition:visibility 0s .5s}
 .gl .shot.on{visibility:visible;transition-delay:0s}
 .gl .pic,.gl .sheet{display:none}
-.gl .cap{max-width:40rem}
+.gl .cap{max-width:40rem;max-height:calc(100dvh - var(--bar) - 150px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#4a443c transparent}
+.gl .cap.scrolls{pointer-events:auto;padding-inline-end:10px;mask-image:linear-gradient(to bottom,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%)}
 .gl .cap a,.gl .cap button{pointer-events:auto}
 .gl .cap > *{opacity:0;transform:translateY(26px);filter:blur(6px);transition:opacity .35s ease,transform .35s ease,filter .35s ease}
 .gl .on .cap > *{opacity:1;transform:none;filter:none;transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
@@ -131,7 +130,7 @@ html:not(.gl) [data-do=sheet]{display:none}
 .gl .on .cap > :nth-child(n+5){transition-delay:.32s}
 .gl .k-room h1{font-size:clamp(3.2rem,7vw,6.4rem);line-height:1.2;margin-block-end:8px}
 /* ملاحظة الهامش: ورقة صغيرة مايلة فوق شمال */
-.gl .note{position:absolute;inset-block-end:176px;inset-inline-end:var(--pad);margin:0;max-width:15rem;padding:12px 16px 14px;background:var(--paper);color:var(--paper-ink);font:700 1.25rem/1.5 "Aref Ruqaa",serif;border-radius:3px;rotate:2.5deg;opacity:0;translate:0 -14px;transition:opacity .4s,translate .4s}
+.gl .note{transform:none;filter:none;position:absolute;inset-block-end:176px;inset-inline-end:var(--pad);margin:0;max-width:15rem;padding:12px 16px 14px;background:var(--paper);color:var(--paper-ink);font:700 1.25rem/1.5 "Aref Ruqaa",serif;border-radius:3px;rotate:2.5deg;opacity:0;translate:0 -14px;transition:opacity .4s,translate .4s}
 .gl .note b{font:500 .8rem/1.4 "Readex Pro",sans-serif;color:var(--red)}
 .gl .on .note{opacity:1;translate:0 0;transition:opacity .9s var(--ease) .7s,translate .9s var(--ease) .7s}
 /* آلة الزمن: السنة الحقيقية للعمل */
@@ -164,11 +163,11 @@ dialog{border:0;padding:0;background:var(--lift);color:var(--ink);border-radius:
 dialog::backdrop{background:rgba(4,3,3,.8)}
 dialog form{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 24px 0}
 dialog h2{font-size:2rem;margin:0}
-.x{padding:8px 14px;border-radius:6px;background:#2a2521;font-weight:400;font-size:1rem;margin-inline-start:auto}
+.x{min-height:44px;padding:8px 16px;border-radius:6px;background:#2a2521;font-weight:400;font-size:1rem;margin-inline-start:auto}
 .x:hover{background:#3a342d}
 #runDlg{width:min(92vw,720px)}
 #runDlg ol{columns:2;column-gap:24px;padding:12px 24px 24px}
-#runDlg a{display:flex;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:6px;text-decoration:none;font-weight:400;break-inside:avoid}
+#runDlg a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:9px 10px;border-radius:6px;text-decoration:none;font-weight:400;break-inside:avoid}
 #runDlg a:hover,#runDlg a[aria-current]{background:#2a2521}
 #runDlg a[aria-current]{color:var(--red)}
 #runDlg small{color:var(--dim);font-variant-numeric:tabular-nums}
@@ -223,6 +222,9 @@ dialog h2{font-size:2rem;margin:0}
   .year b{font-size:1.4rem}
   .work{grid-template-columns:1fr}
   .bar .hb{padding:6px 10px;font-size:.92rem}
+  .hb.vw span{display:none}
+  .hb.vw{padding:6px 13px;min-width:44px;justify-content:center}
+  .bar .hb + .hb{margin-inline-start:-6px}
   .state .tc{display:none}
   .gl .k-room h1{font-size:clamp(2.8rem,13vw,4rem)}
   #runDlg ol{columns:1}
@@ -237,25 +239,91 @@ dialog h2{font-size:2rem;margin:0}
   .meta{margin-block:-4px 6px !important}
 }
 
-/* موبايل بالعرض وأي شاشة قصيرة جداً: نختصر الكلام ونصغّر الخطوط عشان الشاشة تلاقي مكان */
+/* ---- شرائح البرامج (بديل HTML لحيطة الكنترول) وشكل العرض ---- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-block-start:16px;max-width:40rem}
+.chips a{display:inline-flex;align-items:center;min-height:44px;padding:6px 14px;border-radius:8px;background:var(--lift);text-decoration:none;font-weight:400;font-size:1rem;transition:background .2s}
+.chips a:hover{background:#2a2521}
+.hb.vw svg{flex:none}
+#viewDlg{width:min(92vw,520px)}
+.views{display:grid;gap:8px;padding:14px 24px 6px}
+.views button{display:grid;gap:2px;text-align:start;padding:12px 16px;border-radius:8px;background:#221e1b;border:1.5px solid transparent;min-height:64px;transition:background .2s,border-color .2s}
+.views button:hover{background:#2a2521}
+.views button[aria-pressed=true]{border-color:var(--red)}
+.views button[disabled]{opacity:.45;cursor:not-allowed}
+.views b{font-weight:500}
+.views span{color:var(--dim);font-size:.95rem;line-height:1.6}
+#viewDlg .more{padding:6px 24px 22px;font-size:.95rem}
+
+/* ---- قبل ما المشهد يجهز: الاسم والتعريف والأزرار ظاهرين فورا ---- */
+.gl.pre #stage{opacity:0}
+.gl #stage{transition:opacity 1.1s ease}
+.gl.pre:not(.ui) #top{visibility:visible}
+.gl.pre:not(.ui) #top .cap > *{opacity:1;transform:none;filter:none}
+.gl #track{height:300vh}
+
+/* ---- القراءة الخفيفة: صفحة تحريرية كاملة من غير 3D ---- */
+html:not(.gl) .shot{position:relative;padding-block:clamp(48px,9vh,96px)}
+html:not(.gl) .shot + .shot{border-block-start:1px solid #221e1b}
+html:not(.gl) .shot::before{content:attr(data-name);display:block;margin-block-end:14px;color:var(--dim);font-weight:400;font-size:.95rem}
+html:not(.gl) #top::before{content:"قبل الهوا"}
+html:not(.gl) #top{padding-block-start:clamp(56px,14vh,140px)}
+html:not(.gl) #top h1{font-size:clamp(3rem,9vw,5.6rem);line-height:1.2;margin-block-end:10px}
+html:not(.gl) .pic img{background:var(--lift)}
+html:not(.gl) .pic.noimg{display:none}
+html:not(.gl) .sheet p{max-width:34rem}
+html:not(.gl) .sheet .lnks{max-width:38rem}
+html:not(.gl) .note{border-inline-start:2px solid var(--red);padding-inline-start:14px;margin-block-start:22px}
+html:not(.gl) .roll{max-width:38rem}
+html:not(.gl) body{padding-block-end:env(safe-area-inset-bottom,0px)}
+@media (min-width:1100px){
+  html:not(.gl) .shot{max-width:68rem;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:0 56px;align-items:start}
+  html:not(.gl) .shot::before{grid-column:1/-1}
+  html:not(.gl) .shot .pic{grid-column:2;grid-row:2 / span 2;position:sticky;inset-block-start:calc(var(--bar) + 24px)}
+  html:not(.gl) .shot .cap{grid-column:1;grid-row:2}
+  html:not(.gl) .shot .sheet{grid-column:1;grid-row:3}
+  html:not(.gl) .shot:not(:has(.pic)){display:block;max-width:46rem}
+  html:not(.gl) .shot[data-kind="me"] .pic img,html:not(.gl) .shot[data-kind="end"] .pic img{max-width:360px}
+}
+
+/* شاشة قصيرة (موبايل بالعرض أو تكبير 200%): مفيش كلمة بتتشال.. الخط بيصغر والكلام بيتمرر */
 @media (max-height:520px){
   :root{--bar:52px}
-  .facts,.cap p:not(.lead):not(.go):not(.meta){display:none}
-  .cap p.lead{font-size:1rem;line-height:1.5}
-  h1{font-size:min(2.4rem,10vh)}
-  h2{font-size:min(2.2rem,9vh);margin-block-end:6px}
-  .gl .shot{padding-block-end:60px}
-  .go{margin-block-start:10px !important}
-  .btn{min-height:42px;padding:6px 16px}
-  .gl .cuebar{inset-block-end:10px}
-  .cue{min-height:40px}
-  .gl .note,.gl .year{display:none}
+  .cap p.lead{font-size:1.05rem;line-height:1.6}
+  .cap p{font-size:.98rem;line-height:1.65}
+  h1{font-size:min(2.4rem,11vh)}
+  h2{font-size:min(2.2rem,10vh);margin-block-end:6px}
+  .gl .k-room h1{font-size:min(3rem,14vh)}
+  .go{margin-block-start:12px !important}
+  .gl .cuebar{inset-block-end:8px}
+  .gl .shot{padding-block-end:64px}
+  .gl .cap{max-height:calc(100dvh - var(--bar) - 72px)}
+  .gl .year{inset-block-end:auto;inset-block-start:calc(var(--bar) + 2px);inset-inline:auto;left:var(--pad)}
+  .year b{font-size:1.3rem}.year small{display:inline;margin-inline-end:6px}
   .name{font-size:1.4rem}
+}
+/* موبايل بالعرض: الكلام عمود بيتمرر على اليمين، والشاشة واخدة الشمال */
+@media (max-height:520px) and (min-aspect-ratio:13/10){
+  .gl .shot{flex-direction:row;align-items:stretch;justify-content:flex-start;padding:var(--bar) max(var(--pad),env(safe-area-inset-right,0px)) 62px}
+  .gl .cap{width:47%;max-width:none;max-height:none;overflow-y:auto;pointer-events:auto;display:flex;flex-direction:column;padding-block:6px;padding-inline-end:10px}
+  .gl .cap > :first-child{margin-block-start:auto}
+  .gl .cap > :last-child{margin-block-end:auto}
+  .gl .cap .note{position:static;rotate:0deg;max-width:none;margin-block-start:12px;padding:8px 12px;font-size:1.05rem}
+  .gl body::after,[data-kind=end] body::after{inset:0;height:auto;background:linear-gradient(to left,rgba(6,5,5,.95) 34%,rgba(6,5,5,.6) 50%,rgba(6,5,5,0) 66%)}
+  .facts{grid-template-columns:1fr;gap:4px;margin-block-start:12px}
+  .facts li{display:flex;gap:10px;align-items:baseline}
+}
+
+/* شاشة ضيقة جدا (تكبير 200% على موبايل): الشريط بيبقى سطرين بدل ما الأزرار تركب على بعض */
+@media (max-width:330px){
+  :root{--bar:104px}
+  .bar{flex-wrap:wrap;align-content:center;gap:4px 8px;padding-inline:10px}
+  .name{flex-basis:100%;min-height:44px}
+  .bar .hb:first-of-type{margin-inline-start:0}
+  .state{display:none}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .gl .cap > *,.gl .on .cap > *{transform:none;filter:none;transition:opacity .2s}
-  [data-act="air"] .state .dot,.boot #loader .dot{animation:none}
-  #sheetDlg{transition:none}
-  .btn,.lnk,.cue{transition:none}
+  *,*::before,*::after{animation:none !important;scroll-behavior:auto !important}
+  .gl .cap > *,.gl .on .cap > *,.gl .note,.gl .on .note{transform:none;translate:0 0;filter:none;transition:opacity .2s}
+  #sheetDlg,.bars::before,.bars::after,.btn,.lnk,.cue,.hb,#toast{transition:none}
 }

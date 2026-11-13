@@ -4,11 +4,12 @@
 التشغيل من جذر المشروع:  python3 tools/build.py
 كل النصوص والروابط في content/site.json.. المولّد ده شكل بس.
 """
-import html, json, pathlib
+import html, json, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 D = json.loads((ROOT / 'content' / 'site.json').read_text(encoding='utf8'))
-SITE, CH = D['site'], D['chapters']
+SITE = D['site']
+CH = [c for c in D['chapters'] if not c.get('draft') or '--with-drafts' in sys.argv]   # المسودات ما بتتنشرش إلا بطلب صريح
 E = html.escape
 PLAY = '<span class="ph" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span>'
 DOT = '<i class="dot"></i>'
@@ -65,6 +66,11 @@ def chapter(c):
     cap += [f'    <p>{E(b)}</p>' for b in c.get('body', [])]
     if c.get('facts'):
         cap.append('    <ul class="facts">' + ''.join(f'<li><b>{E(a)}</b><span>{E(b)}</span></li>' for a, b in c['facts']) + '</ul>')
+    if c.get('type') == 'program':                 # مقتطف الدور ظاهر في المشهد.. والورقة الكاملة لسه موجودة
+        cap.append(f'    <p class="role in-cap"><b>دوري</b> {E(c["role"])}</p>')
+    if c['kind'] == 'control':                     # بديل HTML لشاشات حيطة الكنترول
+        cap.append('    <ul class="chips" aria-label="برامج الحلقة">' + ''.join(
+            f'<li><a href="#{x["id"]}">{E(x["nav"])}</a></li>' for x in CH if x.get('type') == 'program' and CH.index(x) > CH.index(c)) + '</ul>')
     go = [action(a) for a in c.get('actions', [])]
     sh = sheet(c)
     if sh:
@@ -77,8 +83,8 @@ def chapter(c):
     if c.get('contact'):
         cap.append(f'    <p class="fine">{E(SITE["footer"])} · <a href="v3.html">النسخة اللي فاتت</a></p>')
     attrs = {'data-name': c['nav'], 'data-kind': c['kind']}
-    if c.get('flipScrub'):
-        attrs['data-flip'] = 'scrub'
+    if c.get('flip'):
+        attrs['data-flip'] = '1'
     if c.get('paperHead'):
         attrs['data-paperhead'] = c['paperHead']
     for k in ('img', 'year', 'mood', 'tint', 'paper'):
@@ -87,13 +93,20 @@ def chapter(c):
     for k in ('sats', 'wall'):
         if c.get(k):
             attrs[f'data-{k}'] = ','.join(c[k])
-    a = ' '.join(f'{k}="{E(v)}"' for k, v in attrs.items())
     w, h = c.get('imgDims', [1280, 720])
-    fig = f'<figure class="pic"><img src="{E(c["img"])}" alt="" width="{w}" height="{h}" loading="lazy"></figure>' if c.get('img') else ''
-    note = f'\n  <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>{E(c["note"])}</aside>' if c.get('note') else ''
+    fig = ''
+    if c.get('img'):
+        small = ROOT / 'img' / 'm' / pathlib.Path(c['img']).name
+        if small.exists() and w > 640:
+            attrs['data-imgm'] = f'img/m/{small.name}'
+        ss = f' srcset="img/m/{small.name} 640w, {E(c["img"])} {w}w" sizes="(max-width:760px) 92vw, 700px"' if small.exists() and w > 640 else ''
+        fig = f'<figure class="pic"><img src="{E(c["img"])}"{ss} alt="" width="{w}" height="{h}" loading="lazy" decoding="async"></figure>'
+    a = ' '.join(f'{k}="{E(v)}"' for k, v in attrs.items())
+    if c.get('note'):
+        cap.append(f'    <aside class="note" aria-label="ملاحظة على الهامش"><b>على الهامش</b>{E(c["note"])}</aside>')
     shd = f'\n  <div class="sheet">\n{sh}\n  </div>' if sh else ''
     return (f'<section class="shot k-{c["kind"]}" id="{c["id"]}" {a} aria-labelledby="{hid}">\n  {fig}\n'
-            f'  <div class="cap">\n' + '\n'.join(cap) + f'\n  </div>{note}{shd}\n</section>')
+            f'  <div class="cap">\n' + '\n'.join(cap) + f'\n  </div>{shd}\n</section>')
 
 
 nav = ''.join(f'<li><a href="#{c["id"]}">{E(c["nav"])}' + (f'<small>{E(c["year"])}</small>' if c.get('year') else '') + '</a></li>' for c in CH)
@@ -118,7 +131,16 @@ page = f'''<!doctype html>
 <link rel="preload" href="fonts/aref-ruqaa-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/readex-pro-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="take.css">
-<script>(function(r){{try{{var c=document.createElement('canvas');if(!(c.getContext('webgl2')))return}}catch(e){{return}}r.classList.add('boot');window.__unboot=function(){{r.classList.remove('boot')}};setTimeout(window.__unboot,9000);addEventListener('error',window.__unboot,true)}})(document.documentElement)</script>
+<script>/* اختيار شكل العرض قبل أول رسم: المحفوظ، وبعدين إشارات الجهاز (تقليل الحركة، توفير البيانات، WebGL2) */
+(function(r){{var q=(location.search.match(/[?&]view=(lite|cine|high)/)||[])[1],v=null,gl=false;
+try{{v=localStorage.getItem('qh-view')}}catch(e){{}}if(!/^(lite|cine|high)$/.test(v||''))v=null;
+try{{gl=!!document.createElement('canvas').getContext('webgl2')}}catch(e){{}}
+var mm=function(x){{return !!(window.matchMedia&&matchMedia(x).matches)}};
+var save=!!(navigator.connection&&navigator.connection.saveData)||mm('(prefers-reduced-data:reduce)');
+var mode=q||v||((save||mm('(prefers-reduced-motion:reduce)'))?'lite':'auto');if(!gl)mode='lite';
+window.__view={{mode:mode,gl:gl,save:save,chosen:!!(q||v)}};r.setAttribute('data-view',mode=='auto'?'cine':mode);
+if(mode!='lite'){{r.classList.add('gl','pre');setTimeout(function(){{if(!window.__ui)r.classList.remove('gl','pre')}},6000)}}}})(document.documentElement)</script>
+<link rel="modulepreload" href="ui.js">
 <script type="importmap">{{"imports":{{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/jsm/"}}}}</script>
 <script type="application/ld+json">{ld}</script>
 <meta property="og:type" content="website">
@@ -133,14 +155,15 @@ page = f'''<!doctype html>
 </head>
 <body data-eggs="{eggs}">
 <a class="skip" href="#documentary">روح للشغل على طول</a>
-<div id="loader" aria-hidden="true"><i class="dot"></i><b>قبل الهوا</b><span id="loadN" dir="ltr">00</span></div>
+<button type="button" class="skip two" data-view="lite">اقرا من غير حركة</button>
 <canvas id="stage" aria-hidden="true"></canvas>
 <div class="bars" aria-hidden="true"></div>
 <header class="bar">
   <a class="name" href="#top">{E(SITE["name"])}</a>
   <p class="state"><i class="dot"></i><span id="stateTxt">قبل الهوا</span><button type="button" class="tc" id="tc" dir="ltr" aria-label="تايم كود">00:00:00:00</button></p>
-  <button type="button" class="hb" data-do="work">الشغل</button>
+  <button type="button" class="hb" data-do="work" aria-haspopup="dialog">الشغل</button>
   <button type="button" class="hb" data-do="run" aria-haspopup="dialog">ترتيب الحلقة</button>
+  <button type="button" class="hb vw" data-do="view" aria-haspopup="dialog" aria-label="شكل العرض"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>العرض</span></button>
 </header>
 <main id="main">
 {chr(10).join(chapter(c) for c in CH)}
@@ -170,8 +193,16 @@ page = f'''<!doctype html>
   <form method="dialog"><button class="x">اقفل</button></form>
   <video id="reel" poster="vid/showreel-thumb.webp" controls playsinline preload="none"></video>
 </dialog>
-<script>/* لو الـ3D مش شغال، القوائم والروابط تفضل شغالة */document.addEventListener('click',function(e){{if(document.documentElement.classList.contains('js3d'))return;var c=function(s){{return e.target.closest&&e.target.closest(s)}};var t=c('[data-do]');if(t){{var id={{run:'runDlg',work:'workDlg',reel:'reelDlg'}}[t.getAttribute('data-do')];var d=id&&document.getElementById(id);if(d&&d.showModal&&!d.open){{if(id=='reelDlg'){{var v=document.getElementById('reel');if(!v.src)v.src='vid/showreel.mp4'}}d.showModal()}}else if(t.getAttribute('data-do')=='next'){{location.hash='#me'}}}}var a=c('dialog a[href^="#"]');if(a){{var p=a.closest('dialog');if(p&&p.close)p.close()}}}});</script>
-<script type="module" src="take.js"></script>
+<dialog id="viewDlg" aria-labelledby="viewH">
+  <form method="dialog"><h2 id="viewH">شكل العرض</h2><button class="x">اقفل</button></form>
+  <div class="views">
+    <button type="button" data-view="lite"><b>قراءة خفيفة</b><span>كل الكلام والصور واللينكات.. من غير 3D ولا فيديو.</span></button>
+    <button type="button" data-view="cine"><b>سينمائي متوازن</b><span>الرحلة كاملة.. بحركة ومؤثرات على قد الجهاز.</span></button>
+    <button type="button" data-view="high"><b>جودة أعلى</b><span>للأجهزة القوية بس.. نور وتفاصيل أكتر.</span></button>
+  </div>
+  <p class="more" id="viewNote">اختيارك بيتحفظ على الجهاز ده.</p>
+</dialog>
+<script type="module" src="ui.js"></script>
 </body>
 </html>
 '''
